@@ -1,0 +1,94 @@
+---
+layout: title-page.html
+---
+<div class="headline">News</div>
+<div class="wrapper news">
+    <!--<div class="title"> 
+</div>-->
+    {% for post in collections.post %}
+    <div class="sticky-wrapper news">
+        {% if post.data.img %}
+        <div class="left-align">
+            <img class="img news" id="{{ post.fileSlug }}" src="{{ post.data.img }}">
+            {% if post.data.title %}
+            <div class="txt">{{ post.data.title }}</div>
+            {% endif %}
+        </div>
+        {% else %}
+        <div class="left-align">
+            <video class="vid news" autoplay muted loop playsinline>
+                <source src="{{ post.data.vid }}" type="video/mp4">
+            </video>
+            {% if post.data.title %}
+            <div class="">{{ post.data.title }}</div>
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+    <div class="space-s"></div>
+    {% endfor %}
+
+    <div class="grid">Grid</div>
+
+</div>
+
+<div class="wrapper pantograph  ">
+    <div class="headline">Pantograph</div>
+    <!--<div class="title-right">
+Die flächendeckende Ausbreitung des Desktopcomputers im ausgehenden 20. Jahrhundert hat einen Paradigmenwandel ausgelöst. Während eine Ablösung des Buchstabens vom physischen Trägermedium bereits mit der Einführung von Licht im Zuge des Fotosatzes eingeleitet wurde, befinden sich Schriftsätze entgegen ihrer vormals physischen Form zusätzlich in einem schwerelosen – gefühlt fluiden – Zustand von Bits und Bytes. Zu dem zweidimensionalen Raum des Papiers ist der digitale Raum hinzugekommen.
+
+Diese Entwicklungen haben neben einer massiven Erweiterung der expressiven Qualitäten und schriftgestalterischen Potentiale innerhalb der zeitbasierten und interaktiven Medien, zu neuen Herausforderungen an die heutige Ausbildung von Schriftgestalter*innen als auch zu grundlegenden Fragestellungen im zukünftigen Umgang und der Rezeption von Schrift und Sprache geführt.
+</div> -->
+    <div class="issue-grid">
+        <div class="grey-out">
+        </div>
+        {% for pantograph in collections.pantograph %}
+        <div class="sticky-wrapper relative issue" file-handler="{{ pantograph.data.file }}">
+            {% if pantograph.data.img %}
+            <div class="subgrid">
+                <canvas id="the-canvas"></canvas>
+                <img class="img img-widther" id="{{ pantograph.fileSlug }}" src="{{ pantograph.data.img }}">
+                {% if pantograph.data.title %}
+                <span id="post-{{ pantograph.fileSlug }}" onclick="transitionToPage('pantograph/{{ pantograph.fileSlug }}', this.id)">
+                    <div class="title-subgrid">
+                        <div class="description-title">{{ pantograph.data.title }}</div>
+                        <div class="description price">{{ pantograph.data.price }}</div>
+                    </div>
+                    <div class="description">{{ pantograph.data.info }}</div>
+                    <div class="description hide" id="long-info">{{ pantograph.data.info-long }}</div>
+                    <div class="price-subgrid">
+                        <div class="description">{{ pantograph.data.print }}</div>
+                        <div class="description">{{ pantograph.data.format }}</div>
+                    </div>
+                    <div class="description order-button">Order</div>
+                    {% endif %}
+                </span>
+            </div>
+            {% else %}
+            <div class="">
+                <video class="vid img-widther" autoplay muted loop playsinline>
+                    <source src="{{ pantograph.data.vid }}" type="video/mp4">
+                </video>
+                {% if pantograph.data.title %}
+                <div class="">{{ pantograph.data.title }}</div>
+                {% endif %}
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+
+<div class="info">i</div>
+<div class="info-content hide">
+    Schriftgestalter*innen und Typograf*innen befinden sich somit heute in einem Spannungsfeld zwischen der Schnelligkeit der digitalen Technologien und der Langsamkeit des typografischen Handwerks, während sie neben der Konzeption digitaler Schriftsysteme, Tools und Gestaltungssysteme kollaborativ die Rezeption von Inhalten unserer hyper-medialen Öffentlichkeiten mitgestalten.
+    Auf Grundlage einer künstlerischen Ausbildung an der Schnittstelle zwischen digitalen und analogen Prozessen, einer kritisch-reflektierten Vermittlung von schriftgestalterischen Handwerk und diversen Schrift- als auch Grafikdesign-Geschichten unter Einbeziehung angrenzender Fachgebiete wie den Medienwissenschaften, der Linguistik oder der Semiotik, versteht sich das Lehrgebiet Typedesign an der HAW als ein offener und interdisziplinärer Arbeitsplatz, an dem konzeptionelle Strategien, formal-ästhetische sowie wissenschaftliche Forschung betrieben als auch die zukünftige Praktiken im Typedesign unterstützt und erarbeitet werden. 
+</div>
+
+<label class="switch">
+    <div class="label left">News</div>
+    <div class="label right">Pantograph</div>
+    <input type="checkbox" id="switch">
+    <span class="slider round"></span>
+</label>

@@ -1,0 +1,3 @@
+---
+img: assets/original-octagon-photo-by-david-shields.jpg
+---
