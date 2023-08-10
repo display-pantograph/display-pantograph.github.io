@@ -5,9 +5,17 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: Dialog;
+    src: url("assets/fonts/Dialog_v4VF.ttf");
+    font-display: swap;
+}
+
 ::root{
     --orange: #ff6d00;
     --purple: #5a189a;
+    --primary:;
+    --secondary: #;
 }
 
 body {
@@ -15,6 +23,8 @@ body {
     font-family: GillSucks;
     scroll-behavior: smooth;
     transition: opacity .5s;
+    height: 100vh;
+    overflow-y: hidden;
 }
 
 .wrapper {
@@ -30,7 +40,7 @@ img, video {
     max-width: 45vw;
     height: auto;
     max-height: 75vh;
-    box-shadow: 2px 2px 4px #b7b7b7, -2px -2px 4px #b7b7b7;
+    /*border-radius: 24px;*/
 }
 
 .sticky-wrapper {
@@ -39,10 +49,31 @@ img, video {
 }
 
 .headline{
+    font-family: Dialog;
+    font-variation-settings: 'PIXL' 10;
+    letter-spacing: 0.05em;
     font-size: 2rem;
     position: fixed;
     top: 0;
     justify-items: start;
+    transition: 5s;
+}
+
+.white{
+    color: #fff;
+}
+
+.headline:has(+ .news:hover){
+    animation: font-clear 10s infinite alternate;
+}
+
+.pantograph:hover .headline{
+    animation: font-clear 10s infinite alternate;
+}
+
+@keyframes font-clear{
+    0%{font-variation-settings: 'PIXL' 10;}
+    100%{font-variation-settings: 'PIXL' 1;}
 }
 
 .title {
@@ -74,7 +105,6 @@ img, video {
     padding: 12px 8px 8px 8px;
     border-radius: 0px 0px 8px 8px;
     background-color: #b7b7b7;
-    box-shadow: 2px 2px 4px #b7b7b7, -2px -2px 4px #b7b7b7;
 }
 
 .space-s {
@@ -90,8 +120,7 @@ img, video {
     position: absolute;
     bottom: 24px;
     right: calc(50vw - 24px);
-    background-color: #f8f8f8;
-    box-shadow: 2px 2px 4px #b7b7b7, -2px 2px 4px #b7b7b7, 2px -2px 4px #b7b7b7, -2px -2px 4px #b7b7b7;
+    background-color: lch(85% 98 41);
     width: 48px;
     height: 48px;
     border-radius: 48px;
@@ -101,17 +130,27 @@ img, video {
     z-index: 999;
 }
 
+.info-rounds{
+    position: absolute;
+    bottom: 24px;
+    right: calc(50vw - 48px);
+    width: 96px;
+    height: 48px;
+    background-color: lch(85% 98 41);
+    border-radius: 0 0 48px 48px;
+}
+
 .info-content{
     width: 340px;
     max-width: calc(90vw - 72px);
     position: absolute;
-    bottom: 24px;
+    bottom: 72px;
     right: calc(50vw - 194px);
-    background-color: #f8f8f8;
-    box-shadow: 2px 2px 4px #b7b7b7, -2px 2px 4px #b7b7b7, 2px -2px 4px #b7b7b7, -2px -2px 4px #b7b7b7;
+    background-color: lch(85% 98 41);
     border-radius: 24px;
     padding: 24px 24px 16px 24px;
     z-index: 1000;
+    line-height: 1.2;
 }
 
 .grid {
@@ -119,7 +158,6 @@ img, video {
     left: 24px;
     bottom: 24px;
     background-color: #f8f8f8;
-    box-shadow: 2px 2px 4px #b7b7b7, -2px 2px 4px #b7b7b7, 2px -2px 4px #b7b7b7, -2px -2px 4px #b7b7b7;
     width: 48px;
     height: 48px;
     border-radius: 48px;
@@ -364,7 +402,7 @@ h1 {
 }
 
 .news {
-    background-color: #EBF1F7;
+    background-color: #000;
 }
 
 /* POSTS  */

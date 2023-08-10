@@ -1,7 +1,7 @@
 ---
 layout: title-page.html
 ---
-<div class="headline">News</div>
+<div class="headline white">News</div>
 <div class="wrapper news">
     <!--<div class="title"> 
 </div>-->
@@ -32,16 +32,17 @@ layout: title-page.html
 
 </div>
 
-<div class="wrapper pantograph  ">
+
+
+<div class="wrapper pantograph  ">    
     <div class="headline">Pantograph</div>
     <!--<div class="title-right">
 Die flächendeckende Ausbreitung des Desktopcomputers im ausgehenden 20. Jahrhundert hat einen Paradigmenwandel ausgelöst. Während eine Ablösung des Buchstabens vom physischen Trägermedium bereits mit der Einführung von Licht im Zuge des Fotosatzes eingeleitet wurde, befinden sich Schriftsätze entgegen ihrer vormals physischen Form zusätzlich in einem schwerelosen – gefühlt fluiden – Zustand von Bits und Bytes. Zu dem zweidimensionalen Raum des Papiers ist der digitale Raum hinzugekommen.
 
 Diese Entwicklungen haben neben einer massiven Erweiterung der expressiven Qualitäten und schriftgestalterischen Potentiale innerhalb der zeitbasierten und interaktiven Medien, zu neuen Herausforderungen an die heutige Ausbildung von Schriftgestalter*innen als auch zu grundlegenden Fragestellungen im zukünftigen Umgang und der Rezeption von Schrift und Sprache geführt.
 </div> -->
+    <div class="grey-out"></div>
     <div class="issue-grid">
-        <div class="grey-out">
-        </div>
         {% for pantograph in collections.pantograph %}
         <div class="sticky-wrapper relative issue" file-handler="{{ pantograph.data.file }}">
             {% if pantograph.data.img %}
@@ -81,6 +82,7 @@ Diese Entwicklungen haben neben einer massiven Erweiterung der expressiven Quali
 
 
 <div class="info">i</div>
+<div class="info-rounds hide"></div>
 <div class="info-content hide">
     Schriftgestalter*innen und Typograf*innen befinden sich somit heute in einem Spannungsfeld zwischen der Schnelligkeit der digitalen Technologien und der Langsamkeit des typografischen Handwerks, während sie neben der Konzeption digitaler Schriftsysteme, Tools und Gestaltungssysteme kollaborativ die Rezeption von Inhalten unserer hyper-medialen Öffentlichkeiten mitgestalten.
     Auf Grundlage einer künstlerischen Ausbildung an der Schnittstelle zwischen digitalen und analogen Prozessen, einer kritisch-reflektierten Vermittlung von schriftgestalterischen Handwerk und diversen Schrift- als auch Grafikdesign-Geschichten unter Einbeziehung angrenzender Fachgebiete wie den Medienwissenschaften, der Linguistik oder der Semiotik, versteht sich das Lehrgebiet Typedesign an der HAW als ein offener und interdisziplinärer Arbeitsplatz, an dem konzeptionelle Strategien, formal-ästhetische sowie wissenschaftliche Forschung betrieben als auch die zukünftige Praktiken im Typedesign unterstützt und erarbeitet werden. 

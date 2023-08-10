@@ -53,10 +53,12 @@ $(document).ready(function() {
 
     $(".info").on("click", function() {
         $(".info-content").toggleClass("hide");
+        $(".info-rounds").toggleClass("hide");
     }); 
 
     $(".info-content").on("click", function() {
         $(".info-content").toggleClass("hide");
+        $(".info-rounds").toggleClass("hide");
     }); 
 
 
@@ -251,6 +253,9 @@ window.transitionToPage = function(href, id) {
     $("#"+id).closest('.sticky-wrapper').toggleClass("issue");
     $("#"+id).closest('.sticky-wrapper').toggleClass("issue-wide");
     $("#"+id).siblings('#the-canvas').toggleClass("canvas-animate");
+    
+    $(".pantograph").scrollTop(0);
+    
     left = viewportWidth/2 - elmntWidth - elmntX;
     if($('.grey-out').css("z-index") >= 1){
         $('.grey-out').css("z-index", "auto");

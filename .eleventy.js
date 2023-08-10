@@ -14,9 +14,12 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("jQuery.js");
     
     eleventyConfig.addPassthroughCopy("**/*.woff2");
+    eleventyConfig.addPassthroughCopy("**/*.ttf");
+    eleventyConfig.addPassthroughCopy("**/*.otf");
 
     eleventyConfig.addPassthroughCopy("**/*.jpg");
     eleventyConfig.addPassthroughCopy("**/*.jpeg");
     eleventyConfig.addPassthroughCopy("**/*.png");
+    eleventyConfig.addPassthroughCopy("**/*.pdf");
     eleventyConfig.addPassthroughCopy("**/*.mp4");
 };
