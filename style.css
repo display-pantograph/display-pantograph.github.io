@@ -15,7 +15,7 @@
     --orange: #ff6d00;
     --purple: #5a189a;
     --primary:;
-    --secondary: #;
+    --secondary: oklch(69.1% 0.217 35.3);
 }
 
 body {
@@ -402,7 +402,7 @@ h1 {
 }
 
 .news {
-    background-color: #000;
+    background-color: #fff;
 }
 
 /* POSTS  */

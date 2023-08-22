@@ -16,8 +16,7 @@ layout: title-page.html
         </div>
         {% else %}
         <div class="left-align">
-            <video class="vid news" autoplay muted loop playsinline>
-                <source src="{{ post.data.vid }}" type="video/mp4">
+            <video class="vid news" autoplay muted loop playsinline src="{{ post.data.vid }}" type="video/mp4">
             </video>
             {% if post.data.title %}
             <div class="">{{ post.data.title }}</div>
