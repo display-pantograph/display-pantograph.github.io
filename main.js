@@ -131,8 +131,8 @@ $(document).ready(function() {
 
     $('.news').on('scroll', function(){  
         for(elmt of elementArray){
-            elmt.css('opacity', 1-($('.news').scrollTop()-elementArray.indexOf(elmt)*windowHeight)*1/(elementArray.length*windowHeight));
-            elmt.siblings('.txt').css('opacity', 1-($('.news').scrollTop()-elementArray.indexOf(elmt)*windowHeight)*1/(elementArray.length*windowHeight));
+            elmt.css('opacity', 2-Math.pow(($('.news').scrollTop()-elementArray.indexOf(elmt)*windowHeight), 1.5)/(elementArray.length*windowHeight));
+            elmt.siblings('.txt').css('opacity', 2-Math.pow(($('.news').scrollTop()-elementArray.indexOf(elmt)*windowHeight), 1.5)/(elementArray.length*windowHeight));
         }
     });
 

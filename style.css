@@ -63,6 +63,11 @@ img, video {
     color: #fff;
 }
 
+.outline{
+    text-shadow: #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px,
+        #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px, #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px;
+}
+
 .headline:has(+ .news:hover){
     animation: font-clear 10s infinite alternate;
 }
@@ -113,6 +118,7 @@ img, video {
 
 .left-align{
     position: absolute;
+    background-color: blue;
 }
 
 
