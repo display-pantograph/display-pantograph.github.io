@@ -25,6 +25,7 @@ body {
     transition: opacity .5s;
     height: 100vh;
     overflow-y: hidden;
+    color: blue;
 }
 
 .wrapper {
@@ -57,15 +58,23 @@ img, video {
     top: 0;
     justify-items: start;
     transition: 5s;
+    z-index: 999;
+    display: inline;
 }
 
 .white{
     color: #fff;
+    display: inline;
 }
 
 .outline{
     text-shadow: #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px,
         #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px, #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px;
+}
+
+.outline-blue{
+    text-shadow: #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px,
+        #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px, #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px;
 }
 
 .headline:has(+ .news:hover){
@@ -74,6 +83,10 @@ img, video {
 
 .pantograph:hover .headline{
     animation: font-clear 10s infinite alternate;
+}
+
+.limiter {
+    width: 45%;
 }
 
 @keyframes font-clear{
@@ -125,8 +138,9 @@ img, video {
 .info {
     position: absolute;
     bottom: 24px;
-    right: calc(50vw - 24px);
-    background-color: lch(85% 98 41);
+    left: calc(50vw + 24px);
+    background-color: blue;
+    color: white;
     width: 48px;
     height: 48px;
     border-radius: 48px;
@@ -159,6 +173,16 @@ img, video {
     line-height: 1.2;
 }
 
+
+.middle{
+    width: 1px;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    background-color: blue;
+    left: calc(50vw - 0.5px);
+    top: 0;
+}
 .grid {
     position: absolute;
     left: 24px;
@@ -172,9 +196,7 @@ img, video {
     align-items: center;
 }
 
-canvas{
-    border: 0.1px solid;
-}
+
 
 .subgrid{
     display: grid;
@@ -183,35 +205,51 @@ canvas{
 
 .title-subgrid{
     display: grid;
-    grid-template-columns: 4fr 1fr;
+    grid-template-columns: 1fr;
     align-items: center;
     margin-top: 8px;
     margin-bottom: 4px;
-    border-bottom: 1px black solid;
+    border-bottom: 1px blue solid;
 }
 
 .price-subgrid{
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2fr 1fr 1fr;
     margin-top: 8px;
-    color: #aaa;
+    color: lightblue;
     margin-bottom: 8px;
 }
 
 .order-button{
-    background-color: black;
+    background-color: blue;
     color: white;
     text-align: center;
     padding: 4px 0;
 }
 
 .description-title{
-    font-size: 1.8rem;
+    font-size: 2rem;
+    letter-spacing: 0.05em;
     line-height: 0.8;
-    margin-right: 4px;
+    text-align: center;
+    margin-bottom: 8px;
+    font-family: Dialog;
+    font-variation-settings: 'PIXL' 8;
 }
 
+.blue-bg {
+    background-color: blue;
+    width: 100%;
+    height:32rem;;
+    display: grid;
+}
+
+
 .price-subgrid .description:nth-child(2) {
+    text-align: center;
+}
+
+.price-subgrid .description:nth-child(3) {
     text-align: right;
 }
 
@@ -242,24 +280,42 @@ canvas{
     justify-items: center;
     align-items: start;
     padding-top: 48px;
-    margin: 0 24px;
-    gap: 24px;
+    justify-content: space-between;
     hyphens: auto;
 }
 
 .issue {
-    width: calc(20% - 19.5px);
+    width: calc(33% - 12px);
 }
 
 .issue-wide {
-    width: 50%;
-    margin: 48px 25% 0 25%;
+    width: 60%;
+    margin: 48px 20% 0 20%;
+}
+
+
+.issue-wide .blue-bg{
+    height: 44rem;
+}
+
+.issue-wide canvas{
+    height: 100% !important;
+}
+
+
+.issue-wide .description-title {
+    font-size: 3rem;
+}
+
+.issue-wide .description {
+    font-size: 1.2rem;
 }
 
 canvas {
     max-width: 100%;
-    height: 16rem;
-    margin: 0 auto;
+    height: auto;
+    max-height: calc(100% - 24px);
+    margin: auto auto 12px 12px;
 }
 
 .canvas-animate {
@@ -405,6 +461,8 @@ h1 {
     left: 50vw;
     top:0;
     height: 100vh;
+    width: calc(50vw - 48px);
+    margin: 0 24px;
 }
 
 .news {

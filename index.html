@@ -1,7 +1,7 @@
 ---
 layout: title-page.html
 ---
-<div class="headline outline white">Timeline</div>
+<!--<div class="headline limiter"><div class="outline white ">Timeline,</div> A systematic exploration into the boundaries limits of writin thin a strictly calculated mathematical three dimensional grid within the flat digital space</div>-->
 <div class="wrapper news">
     <!--<div class="title"> 
 </div>-->
@@ -34,7 +34,7 @@ layout: title-page.html
 
 
 <div class="wrapper pantograph  ">    
-    <div class="headline">Pantograph</div>
+    <div class="headline limiter"><div class="outline white ">Pantograph,</div> publishing division of HAW Type</div>
     <!--<div class="title-right">
 Die flächendeckende Ausbreitung des Desktopcomputers im ausgehenden 20. Jahrhundert hat einen Paradigmenwandel ausgelöst. Während eine Ablösung des Buchstabens vom physischen Trägermedium bereits mit der Einführung von Licht im Zuge des Fotosatzes eingeleitet wurde, befinden sich Schriftsätze entgegen ihrer vormals physischen Form zusätzlich in einem schwerelosen – gefühlt fluiden – Zustand von Bits und Bytes. Zu dem zweidimensionalen Raum des Papiers ist der digitale Raum hinzugekommen.
 
@@ -46,21 +46,24 @@ Diese Entwicklungen haben neben einer massiven Erweiterung der expressiven Quali
         <div class="sticky-wrapper relative issue" file-handler="{{ pantograph.data.file }}">
             {% if pantograph.data.img %}
             <div class="subgrid">
-                <canvas id="the-canvas"></canvas>
+                <div class="blue-bg">
+                    <canvas id="the-canvas"></canvas>
+                </div>
                 <img class="img img-widther" id="{{ pantograph.fileSlug }}" src="{{ pantograph.data.img }}">
                 {% if pantograph.data.title %}
                 <span id="post-{{ pantograph.fileSlug }}" onclick="transitionToPage('pantograph/{{ pantograph.fileSlug }}', this.id)">
                     <div class="title-subgrid">
-                        <div class="description-title">{{ pantograph.data.title }}</div>
-                        <div class="description price">{{ pantograph.data.price }}</div>
+                        <div class="description-title outline-blue white">{{ pantograph.data.title }}</div>
                     </div>
                     <div class="description">{{ pantograph.data.info }}</div>
                     <div class="description hide" id="long-info">{{ pantograph.data.info-long }}</div>
                     <div class="price-subgrid">
                         <div class="description">{{ pantograph.data.print }}</div>
                         <div class="description">{{ pantograph.data.format }}</div>
+                        <div class="description">{{ pantograph.data.price }}</div>
                     </div>
                     <div class="description order-button">Order</div>
+
                     {% endif %}
                 </span>
             </div>
@@ -79,6 +82,8 @@ Diese Entwicklungen haben neben einer massiven Erweiterung der expressiven Quali
     </div>
 </div>
 
+
+<div class="middle"></div>
 
 <div class="info">i</div>
 <div class="info-rounds hide"></div>
