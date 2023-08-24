@@ -10,11 +10,12 @@ var scrTop = $(document).scrollTop();
 
 var windowHeight = $(window).height();
 
+var minScale = 1;
+
 
 $(document).ready(function() {
 
     // Randomly position the cards within the viewport
-
     randomize();
     txtWidth();
     randClr();
@@ -76,7 +77,7 @@ $(document).ready(function() {
         await renderPDF($(this).attr("file-handler"), $(this).find('.img').outerWidth(), $(this).find('.img').outerHeight(), $(this).find('#the-canvas'), 1);
         $(this).find('.img').css("display", "none");
     });
-
+    scaler();
 
     $(".issue").on("click", async function() {
         var canvas = $(this).find('#the-canvas');
@@ -92,6 +93,7 @@ $(document).ready(function() {
         }   
         await flipPDF(file, width, height, canvas, pageNr%noPages, scaler);
     }); 
+
 
     /*
     // Function to get the highest z-index value among the cards
@@ -136,6 +138,9 @@ $(document).ready(function() {
         }
     });
 
+
+    $(".wrapper").scrollTop(0.25*windowHeight);
+
 });
 
 
@@ -155,6 +160,7 @@ $(window).on('resize', function(){
         await renderPDF($(this).attr("file-handler"), $(this).find('.img').outerWidth(), $(this).find('.img').outerHeight(), $(this).find('#the-canvas'), 1);
         $(this).find('.img').css("opacity", "0");
     });
+
 });
 
 
@@ -322,17 +328,20 @@ async function renderPDF(file, width, height, canvas, pageNumber){
         pdf.getPage(pageNumber).then(function(page) {
             var viewport = page.getViewport({ scale: 1 });
             var scaler = width / viewport.width;
-            var scaledViewport = page.getViewport({ scale: scaler });
+            var scaledViewport = page.getViewport({ scale: 2*scaler });
             // var outputScale = window.devicePixelRatio || 1;
 
             // Prepare canvas using PDF page dimension
             var context = canvas.get(0).getContext('2d');
-            canvas.get(0).width = width;
-            canvas.get(0).height = height;
+            canvas.get(0).width = 2*width;
+            canvas.get(0).height = 2*height;
             canvas.attr("no-pages", pdf.numPages);
             canvas.attr("scaler", scaler);
             canvas.attr("curr-page", pageNumber);
-
+            if (scaler < minScale) {
+                minScale = scaler;
+                console.log(minScale);
+            }
 
             // Render PDF page into canvas context
             var renderContext = {
@@ -362,7 +371,7 @@ async function flipPDF(file, width, height, canvas, pageNumber, scaler){
     var loadingTask = pdfjsLib.getDocument(file);
     loadingTask.promise.then(function(pdf) {
         pdf.getPage(pageNumber).then(function(page) {
-            var scaledViewport = page.getViewport({ scale: scaler });
+            var scaledViewport = page.getViewport({ scale: 2*scaler });
 
             // Prepare canvas using PDF page dimension
             var context = canvas.get(0).getContext('2d');
@@ -384,4 +393,28 @@ async function flipPDF(file, width, height, canvas, pageNumber, scaler){
         console.error(reason);
     });
 
+}
+
+async function scaler(){
+    $('canvas').each(async function() {
+        await waitForCondition({arg: ($(this).attr("scaler")), test: undefined}).then($(this).css("height", 100*minScale/$(this).attr("scaler")+"%"));
+    });
+}
+
+
+
+async function waitForCondition(conditionObj) {
+    return new Promise(resolve => {
+        var start_time = Date.now();
+        function checkFlag() {
+            if (conditionObj.arg == conditionObj.test) {
+                window.setTimeout(scaler, 1000); 
+            } else if (Date.now() > start_time + 10000) {
+                resolve();
+            } else {
+                resolve();
+            }
+        }
+        checkFlag();
+    });
 }
