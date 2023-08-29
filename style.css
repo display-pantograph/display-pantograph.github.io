@@ -121,8 +121,10 @@ img, video {
 .txt {
     width: 100%;
     padding: 12px 8px 8px 8px;
-    border-radius: 0px 0px 8px 8px;
+    /*border-radius: 0px 0px 8px 8px;*/
     background-color: #b7b7b7;
+    font-size: 20px;
+    line-height: 1;
 }
 
 .space-s {
@@ -152,25 +154,24 @@ img, video {
 
 .info-rounds{
     position: absolute;
-    bottom: 24px;
-    right: calc(50vw - 48px);
-    width: 96px;
-    height: 48px;
-    background-color: lch(85% 98 41);
-    border-radius: 0 0 48px 48px;
+    bottom: 48px;
+    right: calc(50vw - 72px);
+    width: 48px;
+    height: 24px;
+    background-color: blue;
 }
 
-.info-content{
-    width: 340px;
-    max-width: calc(90vw - 72px);
+.info-content {
+    width: clamp(200px, 40%, 400px);
     position: absolute;
     bottom: 72px;
-    right: calc(50vw - 194px);
-    background-color: lch(85% 98 41);
-    border-radius: 24px;
+    left: calc(50vw + 24px);
+    background-color: blue;
     padding: 24px 24px 16px 24px;
     z-index: 1000;
     line-height: 1.2;
+    max-height: 75vh;
+    color: white;
 }
 
 
@@ -241,7 +242,7 @@ img, video {
     background-color: blue;
     width: 100%;
     height:32rem;;
-    display: grid;
+    display: flex;
 }
 
 
@@ -282,10 +283,12 @@ img, video {
     padding-top: 48px;
     justify-content: space-between;
     hyphens: auto;
+    width: calc(100% - 48px);
 }
 
 .issue {
     width: calc(33% - 12px);
+    margin-bottom: 24px;
 }
 
 .issue-wide {
@@ -315,7 +318,7 @@ canvas {
     max-width: 100%;
     height: auto;
     max-height: calc(100% - 24px);
-    margin: auto auto 12px 12px;
+    margin: auto auto 12px auto;
 }
 
 .canvas-animate {
@@ -324,12 +327,13 @@ canvas {
 }
 
 .grey-out{
-    position: absolute;
+    position: fixed;
     width: 50vw;
     height: 100vh;
     opacity: 0;
     background: white;
     transition: .8s;
+    top: 0;
 }
 
 .g-o-animate{
@@ -438,7 +442,7 @@ input:checked + .slider:before {
 
 .description {
     position: relative;
-    line-height: 1;
+    line-height: 1.02;
     margin: 0;
 }
 
@@ -469,6 +473,11 @@ h1 {
     background-color: #fff;
 }
 
+.wide {
+    width: 100vw;
+    left: 0;
+}
+
 /* POSTS  */
 
 .post-img{
@@ -490,6 +499,41 @@ h1 {
     margin: 0 auto;
 }
 
+@media only screen and (max-width: 1920px) {
+    .blue-bg {
+        height: 20rem;
+    }
+
+    .issue-wide .blue-bg {
+        height: 36rem;
+    }
+}
+
+@media only screen and (max-width: 1600px) {
+    .blue-bg {
+        height: 16rem;
+    }
+
+    .issue-wide .blue-bg {
+        height: 32rem;
+    }
+
+    .issue-wide {
+        width: 80%;
+        margin: 48px 10% 0 10%;
+    }
+}
+
+@media only screen and (max-width: 1280px) {
+    .issue {
+        width: calc(50% - 12px);
+    }
+    .issue-wide {
+        width: 80%;
+        margin: 48px 10% 0 10%;
+    }
+}
+
 
 @media only screen and (max-width: 720px) {
     .main-grid{
@@ -497,6 +541,23 @@ h1 {
     }
     .switch {
         display: block !important;
+    }
+    .issue-wide {
+        width: 80%;
+        margin: 48px 10% 0 10%;
+    }
+    .info {
+        left: calc(100vw - 72px);
+    }
+    .info-content {
+        width: clamp(200px, 80%, 400px);
+        position: absolute;
+        bottom: 72px;
+        left: auto;
+        right: 24px;
+    }
+    .info-rounds{
+        right: 24px;
     }
 }
 
