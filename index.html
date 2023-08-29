@@ -34,7 +34,7 @@ layout: title-page.html
 
 
 <div class="wrapper pantograph  ">    
-    <div class="headline limiter"><div class="outline white ">Pantograph,</div> publishing division of HAW Type</div>
+    <div class="headline limiter"><div class="outline white ">Pantograph,</div></div>
     <!--<div class="title-right">
 Die flächendeckende Ausbreitung des Desktopcomputers im ausgehenden 20. Jahrhundert hat einen Paradigmenwandel ausgelöst. Während eine Ablösung des Buchstabens vom physischen Trägermedium bereits mit der Einführung von Licht im Zuge des Fotosatzes eingeleitet wurde, befinden sich Schriftsätze entgegen ihrer vormals physischen Form zusätzlich in einem schwerelosen – gefühlt fluiden – Zustand von Bits und Bytes. Zu dem zweidimensionalen Raum des Papiers ist der digitale Raum hinzugekommen.
 
@@ -62,7 +62,9 @@ Diese Entwicklungen haben neben einer massiven Erweiterung der expressiven Quali
                         <div class="description">{{ pantograph.data.format }}</div>
                         <div class="description">{{ pantograph.data.price }}</div>
                     </div>
-                    <div class="description order-button">Order</div>
+                    <a href="mailto:Pierre.Pane-Farre@haw-hamburg.de?subject=A new order from the website&body=Hello Pantograph,%0D%0A I would like to order 1 copy of »{{ pantograph.data.title }}« to the following adress _______">
+                        <div class="description order-button">Order</div>
+                    </a>
 
                     {% endif %}
                 </span>
