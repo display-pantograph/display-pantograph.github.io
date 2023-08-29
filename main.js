@@ -19,47 +19,7 @@ $(document).ready(function() {
     randomize();
     txtWidth();
     randClr();
-    if($(window).width() <= 720) {
-        $(".pantograph").closest(".wrapper").addClass("hide");
-        $(".grey-out").addClass("wide");
-        $(".pantograph").closest(".wrapper").addClass("wide");
-        
-        $(".news").closest(".wrapper").addClass("wide");
-        
-        $(".middle").addClass("hide");
-        randomize();
-    }
-    
-    if($(window).width() <= 720) {
-        if($("#switch").is(':checked')) {
-            console.log("Checked");
-            $(".pantograph").removeClass("hide");
-            $(".news").addClass("hide");
-        } else {
-            $(".news").removeClass("hide");
-            $(".pantograph").addClass("hide");
-            console.log("Unchecked");
-        }
-
-        $(".switch").on("change", function() {
-            if($("#switch").is(':checked')) {
-                console.log("Checked");
-                $(".news").toggleClass("hide");
-                $(".pantograph").toggleClass("hide");
-                pantograph = 1;
-                $('.issue').each(async function() {
-                    console.log($(this).find('.img').outerWidth());
-                    await renderPDF($(this).attr("file-handler"), $(this).find('.img').outerWidth(), $(this).find('.img').outerHeight(), $(this).find('#the-canvas'), 1);
-                    $(this).find('.img').css("opacity", "0");
-                });
-            } else {
-                $(".news").toggleClass("hide");
-                $(".pantograph").toggleClass("hide");
-                pantograph = 0;
-                console.log("Unchecked");
-            }
-        }); 
-    }
+    resizeRoutine();
 
     $(".wrapper").on("scroll", function() {
         scrTop = $(".wrapper").scrollTop();
@@ -104,7 +64,7 @@ $(document).ready(function() {
         }   
         await flipPDF(file, width, height, canvas, pageNr%noPages, scaler);
     }); 
-    
+
 
     var elementArray=[];
     $(".left-align").each(function() {
@@ -134,15 +94,90 @@ $(document).ready(function() {
 
 
 $(window).on('resize', function(){
-    if(setter == 1){
+    if(setter == 1 || $(window).width() >= 720){
         randomize();
         txtWidth();
         randClr();
     }
-
+    resizeRoutine();
+    $(".switch").on("change", function() {
+        if($("#switch").is(':checked')) {
+            console.log("Checked");
+            $(".news").toggleClass("hide");
+            $(".pantograph").toggleClass("hide");
+            pantograph = 1;
+            $('.issue').each(async function() {
+                console.log($(this).find('.img').outerWidth());
+                await renderPDF($(this).attr("file-handler"), $(this).find('.img').outerWidth(), $(this).find('.img').outerHeight(), $(this).find('#the-canvas'), 1);
+                $(this).find('.img').css("opacity", "0");
+            });
+        } else {
+            $(".news").toggleClass("hide");
+            $(".pantograph").toggleClass("hide");
+            pantograph = 0;
+            console.log("Uncheckedy");
+        }
+    }); 
 });
 
 
+
+function resizeRoutine(){
+    /* Hide/unhide routine */
+    if($(window).width() <= 720) {
+        $(".pantograph").closest(".wrapper").addClass("hide");
+        $(".grey-out").addClass("wide");
+        $(".pantograph").closest(".wrapper").addClass("wide");
+
+        $(".news").closest(".wrapper").addClass("wide");
+
+        $(".middle").addClass("hide");
+        randomize();
+    } else {
+        $(".pantograph").closest(".wrapper").removeClass("hide");
+        $(".grey-out").removeClass("wide");
+        $(".pantograph").closest(".wrapper").removeClass("wide");
+
+        $(".news").closest(".wrapper").removeClass("wide");
+
+        $(".middle").removeClass("hide");
+    }
+
+    /* Switch and logic setup */
+    if($(window).width() <= 720) {
+        if($("#switch").is(':checked')) {
+            console.log("Checked");
+            $(".pantograph").removeClass("hide");
+            $(".news").addClass("hide");
+        } else {
+            $(".news").removeClass("hide");
+            $(".pantograph").addClass("hide");
+            console.log("Unchecked");
+        }
+
+        $(".switch").on("change", function() {
+            if($("#switch").is(':checked')) {
+                console.log("Checked");
+                $(".news").toggleClass("hide");
+                $(".pantograph").toggleClass("hide");
+                pantograph = 1;
+                $('.issue').each(async function() {
+                    console.log($(this).find('.img').outerWidth());
+                    await renderPDF($(this).attr("file-handler"), $(this).find('.img').outerWidth(), $(this).find('.img').outerHeight(), $(this).find('#the-canvas'), 1);
+                    $(this).find('.img').css("opacity", "0");
+                });
+            } else {
+                $(".news").toggleClass("hide");
+                $(".pantograph").toggleClass("hide");
+                pantograph = 0;
+                console.log("Uncheckedy");
+            }
+        }); 
+    } else {
+        $(".pantograph").removeClass("hide");
+        $(".news").removeClass("hide");
+    }
+}
 
 
 function gridder(){
@@ -303,115 +338,115 @@ async function renderPDF(file, width, height, canvas, pageNumber){
     var loadingTask = pdfjsLib.getDocument(file);
     loadingTask.promise.then(function(pdf) {
         pdf.getPage(pageNumber).then(function(page) {
-                var renderTask = null;
+            var renderTask = null;
 
-                if ( renderTask !== null ) {
-                    renderTask.cancel();
-                    return;
-                }
-
-
-                var viewport = page.getViewport({ scale: 1 });
-                var scaler = width / viewport.width;
-                var scaledViewport = page.getViewport({ scale: 2*scaler });
-                // var outputScale = window.devicePixelRatio || 1;
-
-                // Prepare canvas using PDF page dimension
-                var context = canvas.get(0).getContext('2d');
-                canvas.get(0).width = 2*width;
-                canvas.get(0).height = 2*height;
-                canvas.attr("no-pages", pdf.numPages);
-                canvas.attr("scaler", scaler);
-                canvas.attr("curr-page", pageNumber);
-                if (scaler < minScale) {
-                    minScale = scaler;
-                    console.log(minScale);
-                }
-
-                // Render PDF page into canvas context
-                var renderContext = {
-                    canvasContext: context,
-                    viewport: scaledViewport
-                };
-                var renderTask = page.render(renderContext);
-                renderTask.promise.then(function () {
-                    renderTask = null;
-                });
-            });
-        }, function (reason) {
-            // PDF loading error
-            console.error(reason);
-        });
-
-    }
-
-                             async function flipPDF(file, width, height, canvas, pageNumber, scaler){
-        // Loaded via <script> tag, create shortcut to access PDF.js exports.
-        var pdfjsLib = window['pdfjs-dist/build/pdf'];
-
-        // The workerSrc property shall be specified.
-        pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-
-
-        // Asynchronous download of PDF
-        var loadingTask = pdfjsLib.getDocument(file);
-        loadingTask.promise.then(function(pdf) {
-            pdf.getPage(pageNumber).then(function(page) {
-                
-                var renderTask = null;
-
-                if ( renderTask !== null ) {
-                    renderTask.cancel();
-                    return;
-                }
-                
-                
-                var scaledViewport = page.getViewport({ scale: 2*scaler });
-
-                // Prepare canvas using PDF page dimension
-                var context = canvas.get(0).getContext('2d');
-                canvas.get(0).width = width;
-                canvas.get(0).height = height;
-                canvas.attr("curr-page", pageNumber);
-
-                // Render PDF page into canvas context
-                var renderContext = {
-                    canvasContext: context,
-                    viewport: scaledViewport
-                };
-                renderTask = page.render(renderContext);
-                renderTask.promise.then(function () {
-                    renderTask = null;
-                });
-            });
-        }, function (reason) {
-            // PDF loading error
-            renderTask = null;
-            console.error(reason);
-        });
-
-    }
-
-    async function scaler(){
-        $('canvas').each(async function() {
-            await waitForCondition({arg: ($(this).attr("scaler")), test: undefined}).then($(this).css("height", 100*minScale/$(this).attr("scaler")+"%"));
-        });
-    }
-
-
-
-    async function waitForCondition(conditionObj) {
-        return new Promise(resolve => {
-            var start_time = Date.now();
-            function checkFlag() {
-                if (conditionObj.arg == conditionObj.test) {
-                    window.setTimeout(scaler, 1000); 
-                } else if (Date.now() > start_time + 10000) {
-                    resolve();
-                } else {
-                    resolve();
-                }
+            if ( renderTask !== null ) {
+                renderTask.cancel();
+                return;
             }
-            checkFlag();
+
+
+            var viewport = page.getViewport({ scale: 1 });
+            var scaler = width / viewport.width;
+            var scaledViewport = page.getViewport({ scale: 2*scaler });
+            // var outputScale = window.devicePixelRatio || 1;
+
+            // Prepare canvas using PDF page dimension
+            var context = canvas.get(0).getContext('2d');
+            canvas.get(0).width = 2*width;
+            canvas.get(0).height = 2*height;
+            canvas.attr("no-pages", pdf.numPages);
+            canvas.attr("scaler", scaler);
+            canvas.attr("curr-page", pageNumber);
+            if (scaler < minScale) {
+                minScale = scaler;
+                console.log(minScale);
+            }
+
+            // Render PDF page into canvas context
+            var renderContext = {
+                canvasContext: context,
+                viewport: scaledViewport
+            };
+            var renderTask = page.render(renderContext);
+            renderTask.promise.then(function () {
+                renderTask = null;
+            });
         });
-    }
+    }, function (reason) {
+        // PDF loading error
+        console.error(reason);
+    });
+
+}
+
+async function flipPDF(file, width, height, canvas, pageNumber, scaler){
+    // Loaded via <script> tag, create shortcut to access PDF.js exports.
+    var pdfjsLib = window['pdfjs-dist/build/pdf'];
+
+    // The workerSrc property shall be specified.
+    pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+
+
+    // Asynchronous download of PDF
+    var loadingTask = pdfjsLib.getDocument(file);
+    loadingTask.promise.then(function(pdf) {
+        pdf.getPage(pageNumber).then(function(page) {
+
+            var renderTask = null;
+
+            if ( renderTask !== null ) {
+                renderTask.cancel();
+                return;
+            }
+
+
+            var scaledViewport = page.getViewport({ scale: 2*scaler });
+
+            // Prepare canvas using PDF page dimension
+            var context = canvas.get(0).getContext('2d');
+            canvas.get(0).width = width;
+            canvas.get(0).height = height;
+            canvas.attr("curr-page", pageNumber);
+
+            // Render PDF page into canvas context
+            var renderContext = {
+                canvasContext: context,
+                viewport: scaledViewport
+            };
+            renderTask = page.render(renderContext);
+            renderTask.promise.then(function () {
+                renderTask = null;
+            });
+        });
+    }, function (reason) {
+        // PDF loading error
+        renderTask = null;
+        console.error(reason);
+    });
+
+}
+
+async function scaler(){
+    $('canvas').each(async function() {
+        await waitForCondition({arg: ($(this).attr("scaler")), test: undefined}).then($(this).css("height", 100*minScale/$(this).attr("scaler")+"%"));
+    });
+}
+
+
+
+async function waitForCondition(conditionObj) {
+    return new Promise(resolve => {
+        var start_time = Date.now();
+        function checkFlag() {
+            if (conditionObj.arg == conditionObj.test) {
+                window.setTimeout(scaler, 1000); 
+            } else if (Date.now() > start_time + 10000) {
+                resolve();
+            } else {
+                resolve();
+            }
+        }
+        checkFlag();
+    });
+}
