@@ -20,6 +20,17 @@ $(document).ready(function() {
     txtWidth();
     randClr();
     if($(window).width() <= 720) {
+        $(".pantograph").closest(".wrapper").addClass("hide");
+        $(".grey-out").addClass("wide");
+        $(".pantograph").closest(".wrapper").addClass("wide");
+        
+        $(".news").closest(".wrapper").addClass("wide");
+        
+        $(".middle").addClass("hide");
+        randomize();
+    }
+    
+    if($(window).width() <= 720) {
         if($("#switch").is(':checked')) {
             console.log("Checked");
             $(".pantograph").removeClass("hide");
@@ -93,34 +104,7 @@ $(document).ready(function() {
         }   
         await flipPDF(file, width, height, canvas, pageNr%noPages, scaler);
     }); 
-
-
-    /*
-    // Function to get the highest z-index value among the cards
-    function getHighestZIndex() {
-        var highestZIndex = 0;
-        $('.sticky-wrapper').each(function() {
-            var zIndex = parseInt($(this).css('z-index'));
-            if (zIndex > highestZIndex) {
-                highestZIndex = zIndex;
-            }
-        });
-        return highestZIndex;
-    }
-
-
-
-    // Bring the card to the foreground on hover and keep it there
-    $('.sticky-wrapper').on('mouseenter', function() {
-        var $card = $(this);
-        var currentZIndex = parseInt($card.css('z-index'));
-        var highestZIndex = getHighestZIndex();
-
-        if (currentZIndex !== highestZIndex) {
-            $card.css('z-index', highestZIndex + 1);
-        }
-    });
-    */
+    
 
     var elementArray=[];
     $(".left-align").each(function() {
@@ -155,11 +139,6 @@ $(window).on('resize', function(){
         txtWidth();
         randClr();
     }
-    $('.issue').each(async function() {
-        console.log($(this).find('.img').outerWidth());
-        await renderPDF($(this).attr("file-handler"), $(this).find('.img').outerWidth(), $(this).find('.img').outerHeight(), $(this).find('#the-canvas'), 1);
-        $(this).find('.img').css("opacity", "0");
-    });
 
 });
 
@@ -308,9 +287,7 @@ window.transitionToPage = function(href, id) {
     }, 1200)
 }
 
-document.addEventListener('DOMContentLoaded', function(event) {
-    document.querySelector('body').style.opacity = 1
-})
+
 
 
 async function renderPDF(file, width, height, canvas, pageNumber){
@@ -326,95 +303,115 @@ async function renderPDF(file, width, height, canvas, pageNumber){
     var loadingTask = pdfjsLib.getDocument(file);
     loadingTask.promise.then(function(pdf) {
         pdf.getPage(pageNumber).then(function(page) {
-            var viewport = page.getViewport({ scale: 1 });
-            var scaler = width / viewport.width;
-            var scaledViewport = page.getViewport({ scale: 2*scaler });
-            // var outputScale = window.devicePixelRatio || 1;
+                var renderTask = null;
 
-            // Prepare canvas using PDF page dimension
-            var context = canvas.get(0).getContext('2d');
-            canvas.get(0).width = 2*width;
-            canvas.get(0).height = 2*height;
-            canvas.attr("no-pages", pdf.numPages);
-            canvas.attr("scaler", scaler);
-            canvas.attr("curr-page", pageNumber);
-            if (scaler < minScale) {
-                minScale = scaler;
-                console.log(minScale);
-            }
+                if ( renderTask !== null ) {
+                    renderTask.cancel();
+                    return;
+                }
 
-            // Render PDF page into canvas context
-            var renderContext = {
-                canvasContext: context,
-                viewport: scaledViewport
-            };
-            var renderTask = page.render(renderContext);
-            renderTask.promise.then(function () {
+
+                var viewport = page.getViewport({ scale: 1 });
+                var scaler = width / viewport.width;
+                var scaledViewport = page.getViewport({ scale: 2*scaler });
+                // var outputScale = window.devicePixelRatio || 1;
+
+                // Prepare canvas using PDF page dimension
+                var context = canvas.get(0).getContext('2d');
+                canvas.get(0).width = 2*width;
+                canvas.get(0).height = 2*height;
+                canvas.attr("no-pages", pdf.numPages);
+                canvas.attr("scaler", scaler);
+                canvas.attr("curr-page", pageNumber);
+                if (scaler < minScale) {
+                    minScale = scaler;
+                    console.log(minScale);
+                }
+
+                // Render PDF page into canvas context
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: scaledViewport
+                };
+                var renderTask = page.render(renderContext);
+                renderTask.promise.then(function () {
+                    renderTask = null;
+                });
             });
+        }, function (reason) {
+            // PDF loading error
+            console.error(reason);
         });
-    }, function (reason) {
-        // PDF loading error
-        console.error(reason);
-    });
 
-}
+    }
 
-async function flipPDF(file, width, height, canvas, pageNumber, scaler){
-    // Loaded via <script> tag, create shortcut to access PDF.js exports.
-    var pdfjsLib = window['pdfjs-dist/build/pdf'];
+                             async function flipPDF(file, width, height, canvas, pageNumber, scaler){
+        // Loaded via <script> tag, create shortcut to access PDF.js exports.
+        var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
-    // The workerSrc property shall be specified.
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+        // The workerSrc property shall be specified.
+        pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
 
 
-    // Asynchronous download of PDF
-    var loadingTask = pdfjsLib.getDocument(file);
-    loadingTask.promise.then(function(pdf) {
-        pdf.getPage(pageNumber).then(function(page) {
-            var scaledViewport = page.getViewport({ scale: 2*scaler });
+        // Asynchronous download of PDF
+        var loadingTask = pdfjsLib.getDocument(file);
+        loadingTask.promise.then(function(pdf) {
+            pdf.getPage(pageNumber).then(function(page) {
+                
+                var renderTask = null;
 
-            // Prepare canvas using PDF page dimension
-            var context = canvas.get(0).getContext('2d');
-            canvas.get(0).width = width;
-            canvas.get(0).height = height;
-            canvas.attr("curr-page", pageNumber);
+                if ( renderTask !== null ) {
+                    renderTask.cancel();
+                    return;
+                }
+                
+                
+                var scaledViewport = page.getViewport({ scale: 2*scaler });
 
-            // Render PDF page into canvas context
-            var renderContext = {
-                canvasContext: context,
-                viewport: scaledViewport
-            };
-            var renderTask = page.render(renderContext);
-            renderTask.promise.then(function () {
+                // Prepare canvas using PDF page dimension
+                var context = canvas.get(0).getContext('2d');
+                canvas.get(0).width = width;
+                canvas.get(0).height = height;
+                canvas.attr("curr-page", pageNumber);
+
+                // Render PDF page into canvas context
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: scaledViewport
+                };
+                renderTask = page.render(renderContext);
+                renderTask.promise.then(function () {
+                    renderTask = null;
+                });
             });
+        }, function (reason) {
+            // PDF loading error
+            renderTask = null;
+            console.error(reason);
         });
-    }, function (reason) {
-        // PDF loading error
-        console.error(reason);
-    });
 
-}
+    }
 
-async function scaler(){
-    $('canvas').each(async function() {
-        await waitForCondition({arg: ($(this).attr("scaler")), test: undefined}).then($(this).css("height", 100*minScale/$(this).attr("scaler")+"%"));
-    });
-}
+    async function scaler(){
+        $('canvas').each(async function() {
+            await waitForCondition({arg: ($(this).attr("scaler")), test: undefined}).then($(this).css("height", 100*minScale/$(this).attr("scaler")+"%"));
+        });
+    }
 
 
 
-async function waitForCondition(conditionObj) {
-    return new Promise(resolve => {
-        var start_time = Date.now();
-        function checkFlag() {
-            if (conditionObj.arg == conditionObj.test) {
-                window.setTimeout(scaler, 1000); 
-            } else if (Date.now() > start_time + 10000) {
-                resolve();
-            } else {
-                resolve();
+    async function waitForCondition(conditionObj) {
+        return new Promise(resolve => {
+            var start_time = Date.now();
+            function checkFlag() {
+                if (conditionObj.arg == conditionObj.test) {
+                    window.setTimeout(scaler, 1000); 
+                } else if (Date.now() > start_time + 10000) {
+                    resolve();
+                } else {
+                    resolve();
+                }
             }
-        }
-        checkFlag();
-    });
-}
+            checkFlag();
+        });
+    }
