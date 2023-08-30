@@ -1,1 +1,0 @@
----\nimg: assets/Double-U_2.png\ntxt: "Text zu Double U 2"\n---

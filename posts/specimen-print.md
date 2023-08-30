@@ -1,1 +1,0 @@
----\nimg: assets/specimen-print.png\ntxt: "Hier steht ein anderer Text"\n---

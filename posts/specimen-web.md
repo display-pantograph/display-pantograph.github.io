@@ -1,1 +1,0 @@
----\nimg: assets/specimen-web.png\ntxt: "Ein Text zum Webspecimen"\n---
