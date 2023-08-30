@@ -5,10 +5,12 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'assets/'
 jobs:
-  example-job:
+  write-posts:
     runs-on: macos-13
     steps:
       - name: Write posts to .md
-        run: ./assets/iterator.sh
+        run: assets/iterator.sh
         shell: bash
