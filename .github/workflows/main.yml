@@ -12,6 +12,7 @@ jobs:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
+      - run: cd assets
       - name: Write posts to .md
-        run: assets/iterator.sh
+        run: ./iterator.sh
         shell: bash
