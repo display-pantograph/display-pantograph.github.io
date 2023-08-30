@@ -121,10 +121,10 @@ img, video {
 
 .txt {
     width: 100%;
-    padding: 12px 8px 8px 8px;
+    padding: 4px 8px 4px 8px;
     /*border-radius: 0px 0px 8px 8px;*/
-    background-color: #b7b7b7;
-    font-size: 20px;
+    background-color: #ffee32;
+    color: blue;
     line-height: 1;
 }
 
@@ -163,12 +163,12 @@ img, video {
 }
 
 .info-content {
-    width: clamp(200px, 40%, 400px);
+    width: clamp(200px, 25%, 25%);
     position: absolute;
     bottom: 72px;
     left: calc(50vw + 24px);
     background-color: blue;
-    padding: 24px 24px 16px 24px;
+    padding: 12px 12px 12px 12px;
     z-index: 1000;
     line-height: 1.2;
     max-height: 75vh;
@@ -189,7 +189,8 @@ img, video {
     position: absolute;
     left: 24px;
     bottom: 24px;
-    background-color: #f8f8f8;
+    background-color: blue;/*#f8f8f8;*/
+    color: white;
     width: 48px;
     height: 48px;
     border-radius: 48px;
@@ -319,6 +320,10 @@ canvas {
     max-width: 100%;
     height: auto;
     max-height: calc(100% - 24px);
+    margin: auto auto 12px 12px;
+}
+
+.issue-wide canvas {
     margin: auto auto 12px auto;
 }
 

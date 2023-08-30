@@ -1,4 +1,6 @@
-var clrs = ["#5a189a","#ff6d00", "#38b000", "#0080ff", "#ffee32"];
+var clrs = ["#ffee32"];
+
+/*var clrs = ["#5a189a","#ff6d00", "#38b000", "#0080ff", "#ffee32"];*/
 
 var setter = 1;
 
@@ -18,7 +20,6 @@ $(document).ready(function() {
     // Randomly position the cards within the viewport
     randomize();
     txtWidth();
-    randClr();
     resizeRoutine();
 
     $(".wrapper").on("scroll", function() {
@@ -84,6 +85,8 @@ $(document).ready(function() {
 
 
     $(".wrapper").scrollTop(0.25*windowHeight);
+    
+    randClr();
 
 });
 
