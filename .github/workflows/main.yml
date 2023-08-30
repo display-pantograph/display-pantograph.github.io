@@ -13,5 +13,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Write posts to .md
-        run:  (cd assets; ./iterator.sh;  git add --all; git commit -m "Automatically updated posts"; git push)
+        run:  (cd assets; ./iterator.sh)
+      - uses: stefanzweifel/git-auto-commit-action@v4
         shell: bash
