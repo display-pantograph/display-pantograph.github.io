@@ -1,0 +1,13 @@
+name: 'Write posts'
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+jobs:
+  example-job:
+    steps:
+      - name: Write posts to .md
+        run: ${GITHUB_WORKSPACE}/assets/iterator.sh
+        shell: zsh
