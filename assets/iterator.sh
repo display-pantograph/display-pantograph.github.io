@@ -2,7 +2,7 @@ for file in `ls -tU`; do
     if [[ $file =~ .*\.(png|jpeg|jpg) ]]; then 
         for file2 in `ls -tU`; do
             if [[ $file2 =~ .*\.(txt|rtf) && "${file%.*}" == "${file2%.*}" ]]; then
-                echo "---\nimg: assets/${file}\ntxt: `cat ${file2}`\n---" > ../posts/${file%.*}.md
+                echo "---\nimg: assets/${file}\ntxt: \"`cat ${file2}`\"\n---" > ../posts/${file%.*}.md
                 echo "Bingo"
                 break
             else
