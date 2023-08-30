@@ -6,12 +6,12 @@ on:
     branches:
       - main
     paths:
-      - 'assets/'
+      - 'assets/*'
 jobs:
   write-posts:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
       - name: Write posts to .md
-        run:  (cd assets; ./iterator.sh;  git add --all; git commit -m "Automatically updated posts")
+        run:  (cd assets; ./iterator.sh;  git add --all; git commit -m "Automatically updated posts"; git push)
         shell: bash
