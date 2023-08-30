@@ -1,1 +1,3 @@
----\nimg: assets/original-octagon-photo-by-david-shields.jpg\n---
+---
+img: assets/original-octagon-photo-by-david-shields.jpg
+---
