@@ -11,4 +11,4 @@ jobs:
     steps:
       - name: Write posts to .md
         run: ${GITHUB_WORKSPACE}/assets/iterator.sh
-        shell: zsh
+        shell: bash
