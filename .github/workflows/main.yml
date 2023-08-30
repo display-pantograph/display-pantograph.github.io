@@ -13,5 +13,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Write posts to .md
-        run:  (cd assets; ./iterator.sh)
+        run:  (cd assets; ./iterator.sh;  git add --all; git commit -m "Automatically updated posts")
         shell: bash
