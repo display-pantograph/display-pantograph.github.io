@@ -170,7 +170,7 @@ img, video {
     background-color: blue;
     padding: 12px 12px 12px 12px;
     z-index: 1000;
-    line-height: 1.2;
+    line-height: 1.1;
     max-height: 75vh;
     color: white;
 }
