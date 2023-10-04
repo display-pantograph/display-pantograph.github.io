@@ -78,6 +78,11 @@ img, video {
         #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px, #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px;
 }
 
+.outline-red{
+    text-shadow: #FF0000 0px 0px 1px,   #FF0000 0px 0px 1px,   #FF0000 0px 0px 1px,
+        #FF0000 0px 0px 1px,   #FF0000 0px 0px 1px,   #FF0000 0px 0px 1px, #FF0000 0px 0px 1px,   #FF0000 0px 0px 1px,   #FF0000 0px 0px 1px;
+}
+
 .headline:has(+ .news:hover){
     animation: font-clear 10s infinite alternate;
 }
