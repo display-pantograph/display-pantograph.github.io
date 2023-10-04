@@ -151,11 +151,6 @@ function resizeRoutine(){
                 $(".news").toggleClass("hide");
                 $(".pantograph").toggleClass("hide");
                 pantograph = 1;
-                $('.issue').each(async function() {
-                    console.log($(this).find('.img').outerWidth());
-                    await renderPDF($(this).attr("file-handler"), $(this).find('.img').outerWidth(), $(this).find('.img').outerHeight(), $(this).find('#the-canvas'), 1);
-                    $(this).find('.img').css("opacity", "0");
-                });
             } else {
                 $(".news").toggleClass("hide");
                 $(".pantograph").toggleClass("hide");

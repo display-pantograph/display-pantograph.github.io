@@ -283,9 +283,10 @@ img, video {
     justify-items: center;
     align-items: start;
     padding-top: 48px;
-    justify-content: space-between;
+    justify-content: left;
     hyphens: auto;
     width: calc(100% - 48px);
+    column-gap: 24px;
 }
 
 .issue {
@@ -379,7 +380,7 @@ canvas {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: rgb(255, 109, 0);
+    background-color: blue;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -397,7 +398,7 @@ canvas {
 }
 
 input:checked + .slider {
-    background-color: #2196F3;
+    background-color: blue;
 }
 
 input:focus + .slider {
@@ -409,6 +410,8 @@ input:checked + .slider:before {
     -ms-transform: translateX(120px);
     transform: translateX(120px);
 }
+
+
 
 /* Rounded sliders */
 .slider.round {
@@ -430,10 +433,17 @@ input:checked + .slider:before {
 
 .left {
     left: 8px;
+    color: white;
 }
 
 .right {
     right: 8px;
+    color: white;
+}
+
+
+input:checked~ .right{
+    color: blue !important;
 }
 
 .issue .img {
