@@ -1,10 +1,3 @@
-
-@font-face {
-    font-family: GillSucks;
-    src: url("assets/fonts/Rigorosa-Mono.otf");
-    font-display: swap;
-}
-
 @font-face {
     font-family: Dialog;
     src: url("assets/fonts/Dialog_v4VF.ttf");
@@ -20,7 +13,7 @@
 
 body {
     margin: 0;
-    font-family: GillSucks;
+    font-family: Dialog;
     scroll-behavior: smooth;
     transition: opacity .5s;
     height: 100vh;
@@ -401,7 +394,7 @@ canvas {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: blue;
+    background-color: red;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -454,6 +447,10 @@ input:checked + .slider:before {
 
 .left {
     left: 8px;
+    color: red;
+}
+
+input:checked ~ .left {
     color: white;
 }
 
@@ -461,10 +458,8 @@ input:checked + .slider:before {
     right: 8px;
     color: white;
 }
-
-
-input:checked ~ .right{
-    color: blue !important;
+input:checked ~ .right {
+    color: blue;
 }
 
 .issue .img {
@@ -613,6 +608,9 @@ h1 {
     .issue-grid{
         width: calc(100% - 48px);
         overflow-x: hidden;
+    }
+    .middle-bar, .left-bar {
+        display: none;
     }
 }
 
