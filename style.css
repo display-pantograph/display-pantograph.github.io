@@ -87,6 +87,11 @@ img, video {
     animation: font-clear 10s infinite alternate;
 }
 
+.title-left {
+    position: absolute;
+    left: 24px;
+}
+
 .pantograph:hover .headline{
     animation: font-clear 10s infinite alternate;
 }
@@ -192,13 +197,13 @@ img, video {
 }
 
 .left-bar {
-  width: 1px;
-  height: 100vh;
-  position: absolute;
-  z-index: 1;
-  background-color: red;
-  left: 0;
-  top: 0;
+    width: 1px;
+    height: 100vh;
+    position: absolute;
+    z-index: 1;
+    background-color: red;
+    left: 0;
+    top: 0;
 }
 
 .grid {
