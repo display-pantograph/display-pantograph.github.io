@@ -123,8 +123,8 @@ img, video {
     width: 100%;
     padding: 4px 8px 4px 8px;
     /*border-radius: 0px 0px 8px 8px;*/
-    background-color: #ffee32;
-    color: blue;
+    background-color: yellow;/*#ffee32;*/
+    color: red;
     line-height: 1;
 }
 
@@ -134,7 +134,7 @@ img, video {
 
 .left-align{
     position: absolute;
-    background-color: blue;
+    background-color: red;
 }
 
 
@@ -176,7 +176,7 @@ img, video {
 }
 
 
-.middle{
+.middle-bar {
     width: 1px;
     height: 100vh;
     position: absolute;
@@ -185,11 +185,22 @@ img, video {
     left: calc(50vw - 0.5px);
     top: 0;
 }
+
+.left-bar {
+  width: 1px;
+  height: 100vh;
+  position: absolute;
+  z-index: 1;
+  background-color: red;
+  left: 0;
+  top: 0;
+}
+
 .grid {
     position: absolute;
     left: 24px;
     bottom: 24px;
-    background-color: blue;/*#f8f8f8;*/
+    background-color: red;
     color: white;
     width: 48px;
     height: 48px;
@@ -442,7 +453,7 @@ input:checked + .slider:before {
 }
 
 
-input:checked~ .right{
+input:checked ~ .right{
     color: blue !important;
 }
 
