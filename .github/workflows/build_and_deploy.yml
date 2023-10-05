@@ -1,5 +1,6 @@
 name: Eleventy Build and Deploy
-on: 
+on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -11,6 +12,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - name: Write posts
+        uses: .github/workflows/main.yml
       - name: Build
         uses: TartanLlama/actions-eleventy@master
         with:
