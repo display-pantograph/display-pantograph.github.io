@@ -601,7 +601,7 @@ h1 {
         position: absolute;
         bottom: 72px;
         left: auto;
-        right: 24px;
+        right: 12px;
     }
     .info-rounds{
         right: 24px;
@@ -627,5 +627,33 @@ h1 {
     }
     .issue-grid {
         width: 100%;
+    }
+    .info {
+        left: calc(100vw - 54px);
+    }
+    .grid {
+        left: 8px;
+    }
+}
+
+@media only screen and (max-width: 360px) {
+    .info, .grid {
+        bottom: 80px;
+    }
+    .switch {
+        left: 8px;
+        width: calc(100vw - 16px);
+    }
+    input:checked + .slider:before {
+        -webkit-transform: translateX(calc(100vw - 152px));
+        -ms-transform: translateX(calc(100vw - 152px));
+        transform: translateX(calc(100vw - 152px));
+    }
+    .info-content {
+        bottom: 128px;
+        z-index: 999;
+        width: calc(100vw - 40px);
+        left: 8px;
+        right: auto;
     }
 }
