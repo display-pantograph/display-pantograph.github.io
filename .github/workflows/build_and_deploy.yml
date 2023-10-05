@@ -10,10 +10,10 @@ on:
 jobs:
   build_deploy:
     runs-on: ubuntu-latest
+    - name: Write posts
+      uses: display-pantograph/display-pantograph.github.io/.github/workflows/main.yml@main
     steps:
       - uses: actions/checkout@master
-      - name: Write posts
-        uses: display-pantograph/display-pantograph.github.io/.github/workflows/main.yml@main
       - name: Build
         uses: TartanLlama/actions-eleventy@master
         with:
