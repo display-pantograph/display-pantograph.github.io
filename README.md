@@ -1,12 +1,14 @@
-# type-site
-A first version of a site for Type@HAW
+# [display---pantography.xyz](https://display---pantography.xyz)
+Type@HAW’s website, a showcase of current work and a place to order publications.
 
-This is WIP.
+|Display |Pantograph
+|        |
+|        |
+
 
 ## To do: 
-
 Essential:
-- [ ] Find Safari Video Bug
+- [x] Find Safari Video Bug
 
 Nice to have:
 - [ ] Implement RSS feed
