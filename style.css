@@ -514,7 +514,7 @@ h1 {
 }
 
 .wide {
-    width: 100vw;
+    width: 100%;
     left: 0;
     overflow-x: hidden;
 }
@@ -627,11 +627,19 @@ h1 {
     .main-grid{
         grid-template-columns: repeat(2, calc(50vw - 12px));
     }
+    .pantograph{
+        padding: 0;
+    }
     .issue {
-        width: calc(100% - 48px);
+        width: calc(100% - 16px);
+    }
+    .issue-wide {
+        width: calc(100% - 16px);
+        margin: 48px 0px 0 0px;
     }
     .issue-grid {
         width: 100%;
+        padding-left: 8px;
     }
     .info {
         left: calc(100vw - 54px);
@@ -646,13 +654,13 @@ h1 {
         left: 12px;
     }
     .pantograph{
-        padding: 0 12px;
+        padding: 0;
     }
     .issue {
-        width: calc(100% - 24px);
+        width: calc(100% - 16px);
     }
     .issue-wide {
-        width: calc(100vw - 24px);
+        width: calc(100% - 16px);
         margin: 48px 0px 0 0px;
     }
     .issue-wide .blue-bg {
