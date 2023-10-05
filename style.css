@@ -19,7 +19,7 @@ body {
     height: 100vh;
     overflow-y: hidden;
     overflow-x: hidden;
-    color: blue;
+    color: #49c466;
 }
 
 .wrapper {
@@ -36,6 +36,10 @@ img, video {
     height: auto;
     max-height: 75vh;
     /*border-radius: 24px;*/
+}
+
+a {
+    text-decoration: none;
 }
 
 .sticky-wrapper {
@@ -67,13 +71,13 @@ img, video {
 }
 
 .outline-blue{
-    text-shadow: #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px,
-        #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px, #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px,   #0000FF 0px 0px 1px;
+    text-shadow: #49c466 0px 0px 1px,   #49c466 0px 0px 1px,   #49c466 0px 0px 1px,
+        #49c466 0px 0px 1px,   #49c466 0px 0px 1px,   #49c466 0px 0px 1px, #49c466 0px 0px 1px,   #49c466 0px 0px 1px,   #49c466 0px 0px 1px;
 }
 
 .outline-red{
-    text-shadow: #FF0000 0px 0px 1px,   #FF0000 0px 0px 1px,   #FF0000 0px 0px 1px,
-        #FF0000 0px 0px 1px,   #FF0000 0px 0px 1px,   #FF0000 0px 0px 1px, #FF0000 0px 0px 1px,   #FF0000 0px 0px 1px,   #FF0000 0px 0px 1px;
+    text-shadow: #fc9635 0px 0px 1px,   #fc9635 0px 0px 1px,   #fc9635 0px 0px 1px,
+        #fc9635 0px 0px 1px,   #fc9635 0px 0px 1px,   #fc9635 0px 0px 1px, #fc9635 0px 0px 1px,   #fc9635 0px 0px 1px,   #fc9635 0px 0px 1px;
 }
 
 .headline:has(+ .news:hover){
@@ -127,7 +131,7 @@ img, video {
     padding: 4px 8px 4px 8px;
     /*border-radius: 0px 0px 8px 8px;*/
     background-color: yellow;/*#ffee32;*/
-    color: red;
+    color: #fc9635;
     line-height: 1;
 }
 
@@ -141,7 +145,7 @@ img, video {
 
 .left-align{
     position: absolute;
-    background-color: red;
+    background-color: #fc9635;
 }
 
 
@@ -149,7 +153,7 @@ img, video {
     position: absolute;
     bottom: 24px;
     left: calc(50vw + 24px);
-    background-color: blue;
+    background-color: #49c466;
     color: white;
     width: 48px;
     height: 48px;
@@ -166,7 +170,7 @@ img, video {
     right: calc(50vw - 72px);
     width: 48px;
     height: 24px;
-    background-color: blue;
+    background-color: #49c466;
 }
 
 .info-content {
@@ -174,7 +178,7 @@ img, video {
     position: absolute;
     bottom: 72px;
     left: calc(50vw + 24px);
-    background-color: blue;
+    background-color: #49c466;
     padding: 12px 12px 12px 12px;
     z-index: 1000;
     line-height: 1.1;
@@ -188,7 +192,7 @@ img, video {
     height: 100vh;
     position: absolute;
     z-index: 1;
-    background-color: blue;
+    background-color: #49c466;
     left: calc(50vw - 0.5px);
     top: 0;
 }
@@ -198,7 +202,7 @@ img, video {
     height: 100vh;
     position: absolute;
     z-index: 1;
-    background-color: red;
+    background-color: #fc9635;
     left: 0;
     top: 0;
 }
@@ -207,7 +211,7 @@ img, video {
     position: absolute;
     left: 24px;
     bottom: 24px;
-    background-color: red;
+    background-color: #fc9635;
     color: white;
     width: 48px;
     height: 48px;
@@ -230,19 +234,19 @@ img, video {
     align-items: center;
     margin-top: 8px;
     margin-bottom: 4px;
-    border-bottom: 1px blue solid;
+    border-bottom: 1px #49c466 solid;
 }
 
 .price-subgrid{
     display: grid;
     grid-template-columns: auto auto auto;
     margin-top: 8px;
-    color: blue;
+    color: #49c466;
     margin-bottom: 8px;
 }
 
 .order-button{
-    background-color: blue;
+    background-color: #49c466;
     color: white;
     text-align: center;
     padding: 4px 0;
@@ -259,7 +263,7 @@ img, video {
 }
 
 .blue-bg {
-    background-color: blue;
+    background-color: #49c466;
     width: 100%;
     height:32rem;;
     display: flex;
@@ -398,7 +402,7 @@ canvas {
     left: 0;
     right: 0;
     bottom: 0;
-    background-color: red;
+    background-color: #fc9635;
     -webkit-transition: .4s;
     transition: .4s;
 }
@@ -416,7 +420,7 @@ canvas {
 }
 
 input:checked + .slider {
-    background-color: blue;
+    background-color: #49c466;
 }
 
 input:focus + .slider {
@@ -451,7 +455,7 @@ input:checked + .slider:before {
 
 .left {
     left: 8px;
-    color: red;
+    color: #fc9635;
 }
 
 input:checked ~ .left {
@@ -463,7 +467,7 @@ input:checked ~ .left {
     color: white;
 }
 input:checked ~ .right {
-    color: blue;
+    color: #49c466;
 }
 
 .issue .img {
