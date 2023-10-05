@@ -1,3 +1,1 @@
----
-vid: assets/samsa-movie.mp4
----
+---\nvid: assets/samsa-movie.mp4\n---

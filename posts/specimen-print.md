@@ -1,4 +1,1 @@
----
-img: assets/specimen-print.png
-txt: "Hier steht ein anderer Text"
----
+---\nimg: assets/specimen-print.png\ntxt: "Hier steht ein anderer Text"\n---
