@@ -135,6 +135,10 @@ img, video {
     padding-top: 100vh;
 }
 
+.space-bottom{
+    padding-top: 128px;
+}
+
 .left-align{
     position: absolute;
     background-color: red;
