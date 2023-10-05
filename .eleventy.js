@@ -1,6 +1,6 @@
 const lazyImagesPlugin = require('eleventy-plugin-lazyimages');
 
-module.exports = function(eleventyConfig) {
+module.exports = function(config) {
     eleventyConfig.addPassthroughCopy("style.css");
     eleventyConfig.addPassthroughCopy("main.js");
     eleventyConfig.addPassthroughCopy("jQuery.js");
