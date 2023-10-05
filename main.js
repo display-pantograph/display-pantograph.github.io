@@ -291,6 +291,7 @@ window.transitionToPage = function(href, id) {
     $("#"+id).closest('.sticky-wrapper').toggleClass("issue");
     $("#"+id).closest('.sticky-wrapper').toggleClass("issue-wide");
     $("#"+id).siblings('#the-canvas').toggleClass("canvas-animate");
+    $("#"+id).find('.space-bottom').toggleClass("hide");
 
     $(".pantograph").scrollTop(0);
 

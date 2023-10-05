@@ -588,10 +588,11 @@ h1 {
     }
     .switch {
         display: block !important;
+        z-index: 999;
     }
     .issue-wide {
-        width: 80%;
-        margin: 48px 24px 0 24px;
+        width: calc(100vw - 48px);
+        margin: 48px 0px 0 0px;
     }
     .info {
         left: calc(100vw - 72px);
@@ -637,12 +638,29 @@ h1 {
 }
 
 @media only screen and (max-width: 360px) {
+    .title-left{
+        left: 12px;
+    }
+    .pantograph{
+        padding: 0 12px;
+    }
+    .issue {
+        width: calc(100% - 24px);
+    }
+    .issue-wide {
+        width: calc(100vw - 24px);
+        margin: 48px 0px 0 0px;
+    }
+    .issue-wide .blue-bg {
+        height: 24rem;
+    }
     .info, .grid {
         bottom: 80px;
     }
     .switch {
         left: 8px;
         width: calc(100vw - 16px);
+        z-index: 999;
     }
     input:checked + .slider:before {
         -webkit-transform: translateX(calc(100vw - 152px));
@@ -651,7 +669,6 @@ h1 {
     }
     .info-content {
         bottom: 128px;
-        z-index: 999;
         width: calc(100vw - 40px);
         left: 8px;
         right: auto;
