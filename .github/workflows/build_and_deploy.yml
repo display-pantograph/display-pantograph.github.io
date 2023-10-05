@@ -6,9 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
-      - name: Dependencies
-        run:  (npm install sharp; npm install eleventy-plugin-lazyimages --save-dev)
-        shell: bash
       - name: Build
         uses: TartanLlama/actions-eleventy@master
         with:
