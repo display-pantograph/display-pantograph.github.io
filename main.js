@@ -56,9 +56,9 @@ $(window).on("load", function() {
     });
 
 
-    $(".issue").on("click", async function() {
+    $(".blue-bg").on("click", async function() {
         var canvas = $(this).find('#the-canvas');
-        var file = $(this).attr("file-handler");
+        var file = $(this).closest('.issue').attr("file-handler") || $(this).closest('.issue-wide').attr("file-handler");
         var width =  canvas.attr("width");
         var height = canvas.attr("height");
         var scaler = canvas.attr("scaler");
