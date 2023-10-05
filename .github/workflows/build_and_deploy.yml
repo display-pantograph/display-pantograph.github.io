@@ -6,6 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
+      - name: Install Dependency
         run:  (npm install eleventy-plugin-lazyimages --save-dev)
         shell: bash
       - name: Build
