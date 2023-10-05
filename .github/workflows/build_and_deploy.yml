@@ -8,10 +8,10 @@ on:
       - 'assets/*'
 
 jobs:
+  write-posts:
+    uses: display-pantograph/display-pantograph.github.io/.github/workflows/main.yml@main
   build_deploy:
     runs-on: ubuntu-latest
-    - name: Write posts
-      uses: display-pantograph/display-pantograph.github.io/.github/workflows/main.yml@main
     steps:
       - uses: actions/checkout@master
       - name: Build
