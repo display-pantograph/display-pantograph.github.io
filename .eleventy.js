@@ -1,6 +1,6 @@
-const lazyImagesPlugin = require('eleventy-plugin-lazyimages');
+/*const lazyImagesPlugin = require('eleventy-plugin-lazyimages');*/
 
-module.exports = function(config) {
+module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("style.css");
     eleventyConfig.addPassthroughCopy("main.js");
     eleventyConfig.addPassthroughCopy("jQuery.js");
@@ -15,7 +15,7 @@ module.exports = function(config) {
     eleventyConfig.addPassthroughCopy("**/*.pdf");
     eleventyConfig.addPassthroughCopy("**/*.mp4");
     
-    eleventyConfig.addPlugin(lazyImagesPlugin, {
+    /*eleventyConfig.addPlugin(lazyImagesPlugin, {
         imgSelector: '.left-align img',
-    });
+    });*/
 };
