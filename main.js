@@ -95,6 +95,7 @@ $(window).on("load", function() {
 
     resizeRoutine();
     scaler();
+    $(".switch").click();
 });
 
 
