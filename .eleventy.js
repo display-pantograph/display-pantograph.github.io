@@ -14,10 +14,7 @@ module.exports = function(eleventyConfig) {
     eleventyConfig.addPassthroughCopy("**/*.png");
     eleventyConfig.addPassthroughCopy("**/*.pdf");
     eleventyConfig.addPassthroughCopy("**/*.mp4");
-};
-
-
-module.exports = function(eleventyConfig) {
+    
     eleventyConfig.addPlugin(lazyImagesPlugin, {
         imgSelector: '.left-align img',
     });
