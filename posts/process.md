@@ -1,3 +1,0 @@
----
-img: assets/process.png
----
