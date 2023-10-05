@@ -3,7 +3,7 @@ on: [push]
 
 jobs:
   build_deploy:
-    runs-on: macos-13
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: Build
