@@ -19,12 +19,12 @@ var elementArray=[];
 var scrollLock = 0;
 
 
-$(document).ready(function() {
+$(window).on("load", function() {
 
     // Randomly position the cards within the viewport
     randomize();
     txtWidth();
-    resizeRoutine();
+
     if(setter == 1){
         $(".wrapper").on("scroll", function() {
             scrTop = $(".wrapper").scrollTop();
@@ -54,7 +54,7 @@ $(document).ready(function() {
         await renderPDF($(this).attr("file-handler"), $(this).find('.img').outerWidth(), $(this).find('.img').outerHeight(), $(this).find('#the-canvas'), 1);
         $(this).find('.img').css("display", "none");
     });
-    scaler();
+
 
     $(".issue").on("click", async function() {
         var canvas = $(this).find('#the-canvas');
@@ -93,6 +93,8 @@ $(document).ready(function() {
 
     randClr();
 
+    resizeRoutine();
+    scaler();
 });
 
 
@@ -344,7 +346,6 @@ async function renderPDF(file, width, height, canvas, pageNumber){
             var scaler = width / viewport.width;
             var scaledViewport = page.getViewport({ scale: 2*scaler });
             // var outputScale = window.devicePixelRatio || 1;
-
             // Prepare canvas using PDF page dimension
             var context = canvas.get(0).getContext('2d');
             canvas.get(0).width = 2*width;
@@ -371,7 +372,7 @@ async function renderPDF(file, width, height, canvas, pageNumber){
         // PDF loading error
         console.error(reason);
     });
-
+    return;
 }
 
 async function flipPDF(file, width, height, canvas, pageNumber, scaler){
@@ -399,8 +400,11 @@ async function flipPDF(file, width, height, canvas, pageNumber, scaler){
 
             // Prepare canvas using PDF page dimension
             var context = canvas.get(0).getContext('2d');
-            canvas.get(0).width = width;
-            canvas.get(0).height = height;
+            if (width!=0){
+                canvas.get(0).width = width;
+            } 
+            if (height!=0){
+                canvas.get(0).height = height; }
             canvas.attr("curr-page", pageNumber);
 
             // Render PDF page into canvas context
