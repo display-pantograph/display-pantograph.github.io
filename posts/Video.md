@@ -1,1 +1,3 @@
----\nvid: assets/Video.mp4\n---
+---
+vid: assets/Video.mp4
+---

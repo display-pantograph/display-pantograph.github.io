@@ -1,1 +1,4 @@
----\nimg: assets/specimen-web.png\ntxt: "Ein Text zum Webspecimen"\n---
+---
+img: assets/specimen-web.png
+txt: "Ein Text zum Webspecimen"
+---
