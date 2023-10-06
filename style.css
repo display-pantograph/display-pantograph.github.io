@@ -39,7 +39,9 @@ img, video {
 }
 
 a {
-    text-decoration: none;
+    color: #fc9635;
+	text-decoration: none;
+	
 }
 
 .sticky-wrapper {
@@ -162,6 +164,7 @@ a {
     display: grid;
     align-items: center;
     z-index: 999;
+	font-size: 22px;
 }
 
 .info-rounds{
@@ -219,6 +222,7 @@ a {
     text-align: center;
     display: grid;
     align-items: center;
+	font-size: 22px;
 }
 
 
@@ -366,7 +370,7 @@ canvas {
 }
 
 .g-o-animate{
-    opacity: 0.97;
+    opacity: 0.95;
     background: white;
     transition: .8s;
 }
@@ -450,6 +454,7 @@ input:checked + .slider:before {
     z-index: 100;
     width: 120px;
     text-align: center;
+	font-size: 22px;
 
 }
 
