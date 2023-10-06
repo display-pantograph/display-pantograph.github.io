@@ -53,7 +53,8 @@ a {
     font-family: Dialog;
     font-variation-settings: 'PIXL' 10;
     letter-spacing: 0.05em;
-    font-size: 2rem;
+    font-size: 1.75rem;
+	padding-top: 4px;
     position: fixed;
     top: 0;
     justify-items: start;
