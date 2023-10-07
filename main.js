@@ -1,4 +1,4 @@
-var clrs = ["#ffee32"];
+var clrs = ["#ffffff"];
 
 /*var clrs = ["#5a189a","#ff6d00", "#38b000", "#0080ff", "#ffee32"];*/
 
@@ -329,7 +329,7 @@ async function renderPDF(file, width, height, canvas, pageNumber){
     var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
     // The workerSrc property shall be specified.
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
 
     // Asynchronous download of PDF
@@ -382,7 +382,7 @@ async function flipPDF(file, width, height, canvas, pageNumber, scaler){
     var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
     // The workerSrc property shall be specified.
-    pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
 
     // Asynchronous download of PDF
