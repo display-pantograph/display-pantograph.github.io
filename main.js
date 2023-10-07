@@ -1,4 +1,4 @@
-var clrs = ["#ffee32"];
+var clrs = ["#ffffff"];
 
 /*var clrs = ["#5a189a","#ff6d00", "#38b000", "#0080ff", "#ffee32"];*/
 
