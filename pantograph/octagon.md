@@ -1,6 +1,6 @@
 ---
 img: assets/pantograph/octagon.png
-file: assets/pantograph/The-Alphabetical-Room_V02_digitalbraodsheet.pdf
+file: assets/pantograph/Octagon-Specimen.pdf
 title: Octagon Variable
 info: "Printed on 45gsm salmon-colored newsprint, this specimen celebrates the open-source launch of “Octagon Variable”, an educational type design project."
 info-long: "Based on Octagon – a wood type first shown in George Nesbitt’s First Premium Wood Types Cut by Machinery in 1838 – “Octagon Variable” is a reimagination of the original design by Edwin Allen. Today, the original Octagon wood blocks of a full uppercase set in 8-line (no figures or lowercase seem to have existed) are part of the <a href=https://rrk.finearts.utexas.edu/?dt_portfolio=octagon? target=_blank>Rob Roy Kelly collection</a> in Austin, Texas. As part of a first year type design introduction class, we re-drew and re-imagined the design and pushed the already present spatial illusions further collaboratively. The specimen is completed by a short text that traces the origin of the typeface.
