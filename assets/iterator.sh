@@ -1,5 +1,6 @@
 for file in `ls -tU`; do
     if [[ $file =~ .*\.(png|jpeg|jpg) ]]; then 
+        jhead -autorot ${file}
         for file2 in `ls -tU`; do
             if [[ $file2 =~ .*\.(txt|rtf) && "${file%.*}" == "${file2%.*}" ]]; then
                 echo -e $"---\nimg: assets/${file}\ntxt: \"`cat ${file2}`\"\n---" > ../posts/${file%.*}.md
