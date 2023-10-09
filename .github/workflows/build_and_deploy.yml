@@ -14,7 +14,7 @@ jobs:
     needs: write-posts
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v4
       - name: Build
         uses: TartanLlama/actions-eleventy@master
         with:
@@ -34,6 +34,6 @@ jobs:
         with:
           ref: gh-pages
       - name: Compress Images
-        uses: calibreapp/image-actions@master
+        uses: calibreapp/image-actions@main
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
