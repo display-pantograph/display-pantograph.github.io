@@ -16,11 +16,7 @@ jobs:
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
           compressOnly: true
-      - name: Create New Pull Request If Needed
-        if: steps.calibre.outputs.markdown != ''
-        uses: peter-evans/create-pull-request@v4
+      - name: Commit compressed images
+        uses: stefanzweifel/git-auto-commit-action@v4 
         with:
-          title: Compressed Images Nightly
-          branch-suffix: timestamp
-          commit-message: Compressed Images
-          body: ${{ steps.calibre.outputs.markdown }}
+          branch: feature-123
