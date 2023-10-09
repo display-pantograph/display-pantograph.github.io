@@ -9,6 +9,8 @@ jobs:
     runs-on: macos-13
     steps:
       - uses: actions/checkout@v3
+      - name: Install dependencies
+        run: brew install jhead
       - name: Write posts to .md
         run:  (cd assets; ./iterator.sh)
         shell: bash
