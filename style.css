@@ -40,8 +40,8 @@ img, video {
 
 a {
     color: red;
-	text-decoration: none;
-	
+    text-decoration: none;
+
 }
 
 .sticky-wrapper {
@@ -54,7 +54,7 @@ a {
     font-variation-settings: 'PIXL' 10;
     letter-spacing: 0.05em;
     font-size: 1.75rem;
-	padding-top: 4px;
+    padding-top: 4px;
     position: fixed;
     top: 0;
     justify-items: start;
@@ -165,7 +165,7 @@ a {
     display: grid;
     align-items: center;
     z-index: 999;
-	font-size: 22px;
+    font-size: 22px;
 }
 
 .info-rounds{
@@ -223,7 +223,7 @@ a {
     text-align: center;
     display: grid;
     align-items: center;
-	font-size: 22px;
+    font-size: 22px;
 }
 
 
@@ -455,7 +455,7 @@ input:checked + .slider:before {
     z-index: 100;
     width: 120px;
     text-align: center;
-	font-size: 22px;
+    font-size: 22px;
 
 }
 
@@ -627,6 +627,10 @@ h1 {
     .middle-bar, .left-bar {
         display: none;
     }
+
+    img, video {
+        max-width: 75vw;
+    }
 }
 
 @media only screen and (max-width: 480px) {
@@ -652,6 +656,9 @@ h1 {
     }
     .grid {
         left: 8px;
+    }
+    .outline-blue {
+        margin-left: 24px;
     }
 }
 
