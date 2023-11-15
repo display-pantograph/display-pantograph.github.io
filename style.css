@@ -70,19 +70,19 @@ a {
 
 .outline{
     /*text-shadow: #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px,
-        #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px, #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px;*/
+    #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px, #000 0px 0px 1px,   #000 0px 0px 1px,   #000 0px 0px 1px;*/
     -webkit-text-stroke: 1px #000;
 }
 
 .outline-blue{
     /*text-shadow: #2a45f5 0px 0px 1px,   #2a45f5 0px 0px 1px,   #2a45f5 0px 0px 1px,
-        #2a45f5 0px 0px 1px,   #2a45f5 0px 0px 1px,   #2a45f5 0px 0px 1px, #2a45f5 0px 0px 1px,   #2a45f5 0px 0px 1px,   #2a45f5 0px 0px 1px;*/
+    #2a45f5 0px 0px 1px,   #2a45f5 0px 0px 1px,   #2a45f5 0px 0px 1px, #2a45f5 0px 0px 1px,   #2a45f5 0px 0px 1px,   #2a45f5 0px 0px 1px;*/
     -webkit-text-stroke: 1px #2a45f5;
 }
 
 .outline-red{
     /*text-shadow: red 0px 0px 1px,   red 0px 0px 1px,   red 0px 0px 1px,
-        red 0px 0px 1px,   red 0px 0px 1px,   red 0px 0px 1px, red 0px 0px 1px,   red 0px 0px 1px,   red 0px 0px 1px;*/
+    red 0px 0px 1px,   red 0px 0px 1px,   red 0px 0px 1px, red 0px 0px 1px,   red 0px 0px 1px,   red 0px 0px 1px;*/
     -webkit-text-stroke: 1px red;
 }
 
@@ -482,6 +482,7 @@ input:checked ~ .right {
 .issue .img {
     position: absolute;
     margin: 8px auto 8px 8px;
+    height: calc(32rem - 16px);
 }
 
 
@@ -553,6 +554,9 @@ h1 {
     .issue-wide .blue-bg {
         height: 36rem;
     }
+    .issue .img {
+        height: calc(20rem - 16px);
+    }
 }
 
 @media only screen and (max-width: 1600px) {
@@ -567,6 +571,9 @@ h1 {
     .issue-wide {
         width: 80%;
         margin: 48px 10% 0 10%;
+    }
+    .issue .img {
+        height: calc(16rem - 16px);
     }
 }
 
