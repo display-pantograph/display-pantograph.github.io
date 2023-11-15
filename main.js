@@ -18,6 +18,10 @@ var elementArray=[];
 
 var scrollLock = 0;
 
+var pageRendering = false;
+
+var pageNumPending = null;
+
 
 $(window).on("load", function() {
 
@@ -330,7 +334,7 @@ async function renderPDF(file, width, height, canvas, pageNumber){
 
     // The workerSrc property shall be specified.
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
+    pageRendering = true;
 
     // Asynchronous download of PDF
     var loadingTask = pdfjsLib.getDocument(file);
@@ -367,7 +371,11 @@ async function renderPDF(file, width, height, canvas, pageNumber){
             };
             var renderTask = page.render(renderContext);
             renderTask.promise.then(function () {
-                renderTask = null;
+                pageRendering = false;
+                if (pageNumPending !== null) {
+                    renderPDF(file, width, height, canvas, pageNumPending);
+                    pageNumPending = null;
+                }
             });
         });
     }, function (reason) {
@@ -378,53 +386,11 @@ async function renderPDF(file, width, height, canvas, pageNumber){
 }
 
 async function flipPDF(file, width, height, canvas, pageNumber, scaler){
-    // Loaded via <script> tag, create shortcut to access PDF.js exports.
-    var pdfjsLib = window['pdfjs-dist/build/pdf'];
-
-    // The workerSrc property shall be specified.
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
-
-
-    // Asynchronous download of PDF
-    var loadingTask = pdfjsLib.getDocument(file);
-    loadingTask.promise.then(function(pdf) {
-        pdf.getPage(pageNumber).then(function(page) {
-
-            var renderTask = null;
-
-            if ( renderTask !== null ) {
-                renderTask.cancel();
-                return;
-            }
-
-
-            var scaledViewport = page.getViewport({ scale: 2*scaler });
-
-            // Prepare canvas using PDF page dimension
-            var context = canvas.get(0).getContext('2d');
-            if (width!=0){
-                canvas.get(0).width = width;
-            } 
-            if (height!=0){
-                canvas.get(0).height = height; }
-            canvas.attr("curr-page", pageNumber);
-
-            // Render PDF page into canvas context
-            var renderContext = {
-                canvasContext: context,
-                viewport: scaledViewport
-            };
-            renderTask = page.render(renderContext);
-            renderTask.promise.then(function () {
-                renderTask = null;
-            });
-        });
-    }, function (reason) {
-        // PDF loading error
-        renderTask = null;
-        console.error(reason);
-    });
-
+    if (pageRendering) {
+        pageNumPending = pageNumber;
+    } else {
+        renderPDF(file, width, height, canvas, pageNumber, scaler);
+    }
 }
 
 async function scaler(){
