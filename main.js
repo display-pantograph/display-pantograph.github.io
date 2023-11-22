@@ -25,16 +25,19 @@ var pageNumPending = null;
 var viewportWidth = $('.wrapper').width();
 var viewportHeight = $('.wrapper').height();
 
+document.onreadystatechange = function(e)
+{
+    if (document.readyState === 'complete')
+    {
+        if($(window).width() <= 720) {
+            resizeRoutine();
+            $(".switch").click();
+        }
+    }
+};
+
 
 $(window).on("load", function() {
-
-    if($(window).width() <= 720) {
-        resizeRoutine();
-        $(".switch").click();
-    }
-
-
-
     $(".left-align").each(function() {
         if($(this).find('img').length == 1){
             elementArray.push($(this).find('img')); 
