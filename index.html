@@ -2,23 +2,23 @@
 layout: title-page.html
 ---
 <div class="wrapper news">
-<div class="headline limiter title-left">
-    <div class="outline-red white ">
-        Display,
+    <div class="headline limiter title-left">
+        <div class="outline-red white ">
+            Display,
+        </div>
     </div>
-</div>
     {% for post in collections.post %}
     <div class="sticky-wrapper news">
         {% if post.data.img %}
         <div class="left-align">
-            <img class="img news" id="{{ post.fileSlug }}" src="{{ post.data.img }}">
+            <img class="img news" id="{{ post.fileSlug }}" onload="randomize('#{{ post.fileSlug }}')" src="{{ post.data.img }}">
             {% if post.data.txt %}
             <div class="txt">{{ post.data.txt }}</div>
             {% endif %}
         </div>
         {% else %}
         <div class="left-align">
-            <video class="vid news" autoplay muted loop playsinline src="{{ post.data.vid }}" type="video/mp4">
+            <video class="vid news" id="{{ post.fileSlug }}" oncanplay="randomize('#{{ post.fileSlug }}')" autoplay muted loop playsinline src="{{ post.data.vid }}" type="video/mp4">
             </video>
             {% if post.data.title %}
             <div class="">{{ post.data.title }}</div>
@@ -44,7 +44,7 @@ layout: title-page.html
                 <div class="blue-bg">
                     <canvas id="the-canvas"></canvas>
                 </div>
-                <img class="img img-widther" id="{{ pantograph.fileSlug }}" src="{{ pantograph.data.img }}">
+                <img class="img img-widther" id="{{ pantograph.fileSlug }}" src="{{ pantograph.data.img }}" loading="lazy">
                 {% if pantograph.data.title %}
                 <span id="post-{{ pantograph.fileSlug }}" onclick="transitionToPage('pantograph/{{ pantograph.fileSlug }}', this.id)">
                     <div class="title-subgrid">
@@ -57,12 +57,13 @@ layout: title-page.html
                         <div class="description">{{ pantograph.data.format }}</div>
                         <div class="description">{{ pantograph.data.price }}</div>
                     </div>
-                    <a href="mailto:Pierre.Pane-Farre@haw-hamburg.de?subject=A new order from the website&body=Hello Pantograph,%0D%0A I would like to order 1 copy of »{{ pantograph.data.title }}« to the following adress _______.">
-                        <div class="description order-button">Order</div>
-                    </a>
-                    <div class="space-bottom hide"></div>
-                    {% endif %}
                 </span>
+                <a href="mailto:Pierre.Pane-Farre@haw-hamburg.de?subject=A new order from the website&body=Hello Pantograph,%0D%0A I would like to order 1 copy of »{{ pantograph.data.title }}« to the following adress _______.">
+                    <div class="description order-button">Order</div>
+                </a>
+                <div class="space-bottom hide"></div>
+                {% endif %}
+
             </div>
             {% else %}
             <div class="">
@@ -87,9 +88,9 @@ layout: title-page.html
 <div class="info">Info</div>
 <!--<div class="info-rounds hide"></div>-->
 <div class="info-content hide">
-	“display---pantograph.xyz” is a platform that is two-fold: On the one side it’s “Display” allows a glimpse into the ongoing timeline of the type design classes at the Hochschule für Angewandte Wissenschaften in Hamburg. Simultaneously, it is the digital home of “Pantograph”, a non-profit micro-label, closely aligned with these type design classes, which aims to publish projects stemming from typographic research and conceptual approaches within type design. 
-	<br><br>
-	The variable typeface in use is “Dialog” (WIP) by Finn Reduhn and stems from his close-reading and reacting towards the texts “Digital type decade” by Emily King and “The digital wave” by Robin Kinross. This platform and “Pantograph” are projects initiated by Prof. Pierre Pane-Farre. The website was developed together with Simon Thiefes. Please don’t hesitate to reach out <a href="mailto:pierre.pane-farre@haw-hamburg.de" style="color: white; text-decoration: underline;">via email</a>, if you have any questions or would like to connect! 
+    “display---pantograph.xyz” is a platform that is two-fold: On the one side it’s “Display” allows a glimpse into the ongoing timeline of the type design classes at the Hochschule für Angewandte Wissenschaften in Hamburg. Simultaneously, it is the digital home of “Pantograph”, a non-profit micro-label, closely aligned with these type design classes, which aims to publish projects stemming from typographic research and conceptual approaches within type design. 
+    <br><br>
+    The variable typeface in use is “Dialog” (WIP) by Finn Reduhn and stems from his close-reading and reacting towards the texts “Digital type decade” by Emily King and “The digital wave” by Robin Kinross. This platform and “Pantograph” are projects initiated by Prof. Pierre Pane-Farre. The website was developed together with Simon Thiefes. Please don’t hesitate to reach out <a href="mailto:pierre.pane-farre@haw-hamburg.de" style="color: white; text-decoration: underline;">via email</a>, if you have any questions or would like to connect! 
 </div>
 
 <label class="switch">
