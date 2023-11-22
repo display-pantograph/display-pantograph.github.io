@@ -22,12 +22,26 @@ var pageRendering = false;
 
 var pageNumPending = null;
 
+var viewportWidth = $('.wrapper').width();
+var viewportHeight = $('.wrapper').height();
+
 
 $(window).on("load", function() {
 
-    // Randomly position the cards within the viewport
-    randomize();
-    txtWidth();
+    if($(window).width() <= 720) {
+        resizeRoutine();
+        $(".switch").click();
+    }
+
+
+
+    $(".left-align").each(function() {
+        if($(this).find('img').length == 1){
+            elementArray.push($(this).find('img')); 
+        } else {
+            elementArray.push($(this).find('video')); 
+        }
+    });
 
     if(setter == 1){
         $(".wrapper").on("scroll", function() {
@@ -76,15 +90,6 @@ $(window).on("load", function() {
     }); 
 
 
-
-    $(".left-align").each(function() {
-        if($(this).find('img').length == 1){
-            elementArray.push($(this).find('img')); 
-        } else {
-            elementArray.push($(this).find('video')); 
-        }
-    });
-
     $('.news').on('scroll', function(){  
         for(elmt of elementArray){
             elmt.css('opacity', 2-Math.pow(($('.news').scrollTop()-elementArray.indexOf(elmt)*windowHeight), 1.5)/(elementArray.length*windowHeight));
@@ -95,11 +100,7 @@ $(window).on("load", function() {
 
     $(".wrapper").scrollTop(0.25*windowHeight);
 
-    randClr();
-
-    resizeRoutine();
     scaler();
-    $(".switch").click();
 });
 
 
@@ -109,11 +110,6 @@ $(window).on("load", function() {
 
 
 $(window).on('resize', function(){
-    if(setter == 1 || $(window).width() >= 720){
-        randomize();
-        txtWidth();
-        randClr();
-    }
     resizeRoutine();
 });
 
@@ -129,7 +125,7 @@ function resizeRoutine(){
         $(".news").closest(".wrapper").addClass("wide");
 
         $(".middle").addClass("hide");
-        randomize();
+        /*randomize();*/
     } else {
         $(".pantograph").closest(".wrapper").removeClass("hide");
         $(".grey-out").removeClass("wide");
@@ -217,10 +213,13 @@ function gridder(){
             $('.left-align').each(function() {
                 $(this).toggleClass("relative");
             });
+            elementArray.forEach(function(elmnt) {
+                randomize(elmnt);
+            });
             setter= 1;
             $(".wrapper").scrollTop(scrollLock);
-            randomize();
-            txtWidth();
+            /*randomize();
+            txtWidth();*/
             console.log("off");
             for(elmt of elementArray){
                 elmt.css('opacity', 2-Math.pow(($('.news').scrollTop()-elementArray.indexOf(elmt)*windowHeight), 1.5)/(elementArray.length*windowHeight));
@@ -228,61 +227,37 @@ function gridder(){
             }
         }
 
-        //txtWidth();
     }
 }
 
-function randomize() {
-    $('.left-align').each(function() {
-        var $card = $(this);
-        var cardWidth = $card.outerWidth();
-        var cardHeight = $card.outerHeight();
-        var viewportWidth = $('.wrapper').width();
-        var viewportHeight = $('.wrapper').height();
-        var maxLeft = viewportWidth - cardWidth;
-        var maxTop = viewportHeight - cardHeight;
 
-        var randomLeft = Math.floor(Math.random() * (maxLeft+1));
-        var randomTop = Math.floor(Math.random() * (maxTop+1));
+function randomize(elmnt) {
+    var $card = $(elmnt).closest(".left-align");
+    var cardWidth = $card.outerWidth();
+    var cardHeight = $card.outerHeight();
+    var viewportWidth = $('.news').width();
+    var viewportHeight = $(window).height();
+    var maxLeft = viewportWidth - cardWidth;
+    var maxTop = viewportHeight - cardHeight;
+    var randomLeft = Math.floor(Math.random() * maxLeft);
+    var randomTop = Math.floor(Math.random() * maxTop);
 
-        $card.css({
-            left: randomLeft + 'px',
-            top: randomTop + 'px'
-        });
+
+    $card.css({
+        left: Math.abs(randomLeft) + 'px',
+        top: Math.abs(randomTop) + 'px'
     });
+    txtWidth(elmnt);
 }
 
-function txtWidth() {
-    $('.left-align').each(function() {
-        var $img = $(this).find('.img');
-        var $txt = $(this).find('.txt');
-        var imgWidth = $img.outerWidth();
+function txtWidth(elmnt) {
+    var $img = $(elmnt);
+    var $txt = $(elmnt).siblings(".txt");
+    var imgWidth = $img.innerWidth();
 
-        $txt.css("width", "" + imgWidth - 16 + "px");
-    });
-
-    $('.post').each(function() {
-        var $img = $(this).find('.img');
-        var $txt = $(this).find('.post-text');
-        var $title = $(this).find('.post-title');
-        var imgWidth = $img.outerWidth();
-
-        $txt.css("width", "" + imgWidth - 16 + "px");
-        $title.css("width", "" + imgWidth - 16 + "px");
-    });
+    $txt.css("width", "" + imgWidth - 16 + "px");
 }
 
-function randClr() {
-    $('.txt').each(function() {
-        $(this).css("background-color", "" + clrs[getRandomInt(0, (clrs.length))]);
-    });
-}
-
-
-
-function getRandomInt (min, max) {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
 
 
 window.transitionToPage = function(href, id) {
