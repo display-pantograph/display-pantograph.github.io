@@ -308,10 +308,10 @@ window.transitionToPage = function(href, id) {
 async function renderPDF(file, width, height, canvas, pageNumber){
 
     // Loaded via <script> tag, create shortcut to access PDF.js exports.
-    var pdfjsLib = window['pdfjs-dist/build/pdf'];
+    var { pdfjsLib } = globalThis;
 
     // The workerSrc property shall be specified.
-    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
     pageRendering = true;
 
     // Asynchronous download of PDF
