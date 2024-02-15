@@ -328,12 +328,12 @@ async function renderPDF(file, width, height, canvas, pageNumber){
 
             var viewport = page.getViewport({ scale: 1 });
             var scaler = width / viewport.width;
-            var scaledViewport = page.getViewport({ scale: 2*scaler });
+            var scaledViewport = page.getViewport({ scale: scaler });
             // var outputScale = window.devicePixelRatio || 1;
             // Prepare canvas using PDF page dimension
             var context = canvas.get(0).getContext('2d');
-            canvas.get(0).width = 2*width;
-            canvas.get(0).height = 2*height;
+            canvas.get(0).width = width;
+            canvas.get(0).height = height;
             canvas.attr("no-pages", pdf.numPages);
             canvas.attr("scaler", scaler);
             canvas.attr("curr-page", pageNumber);
