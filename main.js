@@ -325,27 +325,30 @@ async function renderPDF(file, width, height, canvas, pageNumber){
                 return;
             }
 
-
+            var resolution = 1.3;
             var viewport = page.getViewport({ scale: 1 });
             var scaler = width / viewport.width;
             var scaledViewport = page.getViewport({ scale: scaler });
             // var outputScale = window.devicePixelRatio || 1;
             // Prepare canvas using PDF page dimension
             var context = canvas.get(0).getContext('2d');
-            canvas.get(0).width = width;
-            canvas.get(0).height = height;
+            canvas.get(0).width = resolution * width;
+            canvas.get(0).height = resolution * height;
             canvas.attr("no-pages", pdf.numPages);
             canvas.attr("scaler", scaler);
             canvas.attr("curr-page", pageNumber);
+            canvas.attr("width", resolution * width);
+            canvas.attr("height", resolution * height);
             if (scaler < minScale) {
                 minScale = scaler;
                 console.log(minScale);
             }
-
+            
             // Render PDF page into canvas context
             var renderContext = {
                 canvasContext: context,
-                viewport: scaledViewport
+                viewport: scaledViewport,
+                transform: [resolution, 0, 0, resolution, 0, 0]
             };
             var renderTask = page.render(renderContext);
             renderTask.promise.then(function () {
