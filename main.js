@@ -352,7 +352,7 @@ async function renderPDF(file, width, height, canvas, pageNumber){
             canvas.attr("scaler", scaler);
             canvas.attr("curr-page", pageNumber);
             console.log(canvas.attr("width"));
-            if(canvas.attr("width") === undefined) {
+            if(canvas.attr("width") === undefined || canvas.attr("height") === undefined) {
                 canvas.attr("width", resolution * width);
                 canvas.attr("height", resolution * height);
                 canvas.get(0).width = resolution * width;
