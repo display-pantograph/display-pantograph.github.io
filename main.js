@@ -87,11 +87,12 @@ $(window).on("load", function() {
         var scaler = canvas.attr("scaler");
         var pageNr = canvas.attr("curr-page");
         var noPages = parseInt(canvas.attr("no-pages"));
-        pageNr = parseInt(pageNr) + 1;
-        if ((pageNr+1)%noPages == 0) {
+        if (pageNr%noPages == 0) {
+            pageNr = 1;
+        }  else {
             pageNr = parseInt(pageNr) + 1;
-        }   
-        await flipPDF(file, width, height, canvas, pageNr%noPages, scaler);
+        }
+        await flipPDF(file, width, height, canvas, pageNr, scaler);
     }); 
 
 
