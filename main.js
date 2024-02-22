@@ -362,8 +362,8 @@ async function renderPDF(file, width, height, canvas, pageNumber){
                 canvas.get(0).width = resolution * width;
                 canvas.get(0).height = resolution * height;
             } else {
-                canvas.attr("width", resolution * width);
-                canvas.attr("height", resolution * height);
+                canvas.attr("width", width);
+                canvas.attr("height", height);
             }
             if (scaler <= minScale) {
                 minScale = scaler;
@@ -371,11 +371,18 @@ async function renderPDF(file, width, height, canvas, pageNumber){
             }
 
             // Render PDF page into canvas context
-            var renderContext = {
-                canvasContext: context,
-                viewport: scaledViewport,
-                transform: [resolution, 0, 0, resolution, 0, 0]
-            };
+            if(canvas.attr("curr-page") == 1) {
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: scaledViewport,
+                    transform: [resolution, 0, 0, resolution, 0, 0]
+                };
+            } else {
+                var renderContext = {
+                    canvasContext: context,
+                    viewport: scaledViewport
+                };
+            }
             var renderTask = page.render(renderContext);
             renderTask.promise.then(function () {
                 pageRendering = false;
