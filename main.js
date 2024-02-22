@@ -399,6 +399,9 @@ async function flipPDF(file, width, height, canvas, pageNumber, scaler){
 async function scaler(){
     $('canvas').each(async function() {
         await waitForCondition({arg: ($(this).attr("scaler")), test: undefined}).then($(this).css("height", 100*minScale/$(this).attr("scaler")+"%"));
+        if (minScale == 0) {
+            $(this).css("height", "100%");
+        }
     });
 }
 
