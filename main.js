@@ -33,7 +33,6 @@ document.onreadystatechange = function(e)
     {
         if($(window).width() <= 720) {
             resizeRoutine();
-            $(".switch").click();
         }
     }
 };
@@ -105,6 +104,14 @@ $(window).on("load", function() {
 
 
     $(".wrapper").scrollTop(0.25*windowHeight);
+    
+    if($(window).width() >= 720) {
+        $(".pantograph").closest(".wrapper").removeClass("wide");
+        $(".news").closest(".wrapper").removeClass("hide");
+        elementArray.forEach(function(elmnt) {
+                randomize(elmnt);
+            });
+    }
 
     scaler();
 });
@@ -138,6 +145,7 @@ function resizeRoutine(){
         $(".pantograph").closest(".wrapper").removeClass("wide");
 
         $(".news").closest(".wrapper").removeClass("wide");
+        $(".pantograph").closest(".wrapper").removeClass("wide");
 
         $(".middle").removeClass("hide");
     }
@@ -164,12 +172,17 @@ function resizeRoutine(){
                 $(".news").toggleClass("hide");
                 $(".pantograph").toggleClass("hide");
                 pantograph = 0;
+                elementArray.forEach(item => {
+                    console.log(item);
+                    randomize(item);
+                });
                 console.log("Uncheckedy");
             }
         }); 
     } else {
         $(".pantograph").removeClass("hide");
         $(".news").removeClass("hide");
+        $(".pantograph").closest(".wrapper").removeClass("wide");
     }
 }
 
@@ -345,8 +358,8 @@ async function renderPDF(file, width, height, canvas, pageNumber){
                 canvas.get(0).width = resolution * width;
                 canvas.get(0).height = resolution * height;
             } else {
-                canvas.attr("width", width);
-                canvas.attr("height", height);
+                canvas.attr("width", resolution * width);
+                canvas.attr("height", resolution * height);
             }
             if (scaler < minScale) {
                 minScale = scaler;

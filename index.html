@@ -1,7 +1,12 @@
 ---
 layout: title-page.html
 ---
-<div class="wrapper news">
+<style>
+    .hide {
+        display: none;
+    }
+</style>
+<div class="wrapper news hide">
     <div class="headline limiter title-left">
         <div class="outline-red white ">
             Display,
@@ -11,14 +16,14 @@ layout: title-page.html
     <div class="sticky-wrapper news">
         {% if post.data.img %}
         <div class="left-align">
-            <img class="img news" id="{{ post.fileSlug }}" onload="randomize('#{{ post.fileSlug }}')" src="{{ post.data.img }}">
+            <img class="img news" id="{{ post.fileSlug }}"  src="{{ post.data.img }}">
             {% if post.data.txt %}
             <div class="txt">{{ post.data.txt }}</div>
             {% endif %}
         </div>
         {% else %}
         <div class="left-align">
-            <video class="vid news" id="{{ post.fileSlug }}" oncanplay="randomize('#{{ post.fileSlug }}')" autoplay muted loop playsinline src="{{ post.data.vid }}" type="video/mp4">
+            <video class="vid news" id="{{ post.fileSlug }}"autoplay muted loop playsinline src="{{ post.data.vid }}" type="video/mp4">
             </video>
             {% if post.data.title %}
             <div class="">{{ post.data.title }}</div>
@@ -33,7 +38,7 @@ layout: title-page.html
 
 
 
-<div class="wrapper pantograph  ">    
+<div class="wrapper pantograph wide">    
     <div class="headline limiter"><div class="outline-blue white ">Pantograph,</div></div>
     <div class="grey-out"></div>
     <div class="issue-grid">
@@ -94,7 +99,7 @@ layout: title-page.html
 </div>
 
 <label class="switch">
-    <input type="checkbox" id="switch">
+    <input type="checkbox" id="switch" checked>
     <span class="slider round"></span>
     <div class="label left">Display</div>
     <div class="label right">Pantograph</div>
