@@ -104,13 +104,13 @@ $(window).on("load", function() {
 
 
     $(".wrapper").scrollTop(0.25*windowHeight);
-    
+
     if($(window).width() >= 720) {
         $(".pantograph").closest(".wrapper").removeClass("wide");
         $(".news").closest(".wrapper").removeClass("hide");
         elementArray.forEach(function(elmnt) {
-                randomize(elmnt);
-            });
+            randomize(elmnt);
+        });
     }
 
     scaler();
@@ -342,14 +342,18 @@ async function renderPDF(file, width, height, canvas, pageNumber){
             }
 
             var viewport = page.getViewport({ scale: 1 });
-            var scaler = width / viewport.width;
+            if (scaler === undefined) {
+                var scaler = width / viewport.width;
+            }
             var scaledViewport = page.getViewport({ scale: scaler });
             // var outputScale = window.devicePixelRatio || 1;
             // Prepare canvas using PDF page dimension
             var context = canvas.get(0).getContext('2d');
 
             canvas.attr("no-pages", pdf.numPages);
-            canvas.attr("scaler", scaler);
+            if (canvas.attr("scaler") === undefined) {
+                canvas.attr("scaler", scaler);
+            }
             canvas.attr("curr-page", pageNumber);
             console.log(canvas.attr("width"));
             if(canvas.attr("width") === undefined || canvas.attr("height") === undefined) {
@@ -361,7 +365,7 @@ async function renderPDF(file, width, height, canvas, pageNumber){
                 canvas.attr("width", resolution * width);
                 canvas.attr("height", resolution * height);
             }
-            if (scaler < minScale) {
+            if (scaler <= minScale) {
                 minScale = scaler;
                 console.log(minScale);
             }
