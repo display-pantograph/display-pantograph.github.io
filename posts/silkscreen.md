@@ -1,3 +1,0 @@
----
-img: assets/silkscreen.jpeg
----
