@@ -19,12 +19,11 @@ jobs:
         uses: cjerrington/actions-eleventy@master
         with:
           install_dependencies: true
+      - name: optimize-images
+        uses: display-pantograph/display-pantograph.github.io/.github/workflows/compress_images.yml@main
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
           publish_dir: _site 
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
-  optimize-images:
-    needs: build_deploy
-    uses: display-pantograph/display-pantograph.github.io/.github/workflows/compress_images.yml@main
