@@ -20,10 +20,9 @@ jobs:
         with:
           install_dependencies: true
       - name: calibreapp/image-actions
-        steps:
-        - uses: actions/checkout@v4
-          with:
-            ref: gh-pages
+        uses: actions/checkout@v4
+        with:
+          ref: gh-pages
       - name: Compress Images
         uses: calibreapp/image-actions@main
         with:
