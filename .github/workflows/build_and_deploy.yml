@@ -24,7 +24,7 @@ jobs:
         with:
           publish_dir: _site 
           publish_branch: gh-pages
-          github_token: ${{ secrets.DEPLOY_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
   optimize-images:
     needs: build
     uses: display-pantograph/display-pantograph.github.io/.github/workflows/compress_images.yml@main
