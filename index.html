@@ -2,94 +2,99 @@
 layout: title-page.html
 ---
 <style>
-    .hide {
-        display: none;
-    }
-    @media only screen and (min-width: 720px) {
-        .wide {
-            width: 50%;
-            margin-left: 50%;
-        }
-    }
+	.hide {
+		display: none;
+	}
+	@media only screen and (min-width: 720px) {
+		.wide {
+			width: 50%;
+			margin-left: 50%;
+		}
+	}
 </style>
 <div class="wrapper news hide">
-    <div class="headline limiter title-left">
-        <div class="outline-red white ">
-            Display,
-        </div>
-    </div>
-    {% for post in collections.post %}
-    <div class="sticky-wrapper news">
-        {% if post.data.img %}
-        <div class="left-align">
-            <img class="img news" id="{{ post.fileSlug }}"  src="{{ post.data.img }}">
-            {% if post.data.txt %}
-            <div class="txt">{{ post.data.txt }}</div>
-            {% endif %}
-        </div>
-        {% else %}
-        <div class="left-align">
-            <video class="vid news" id="{{ post.fileSlug }}"autoplay muted loop playsinline src="{{ post.data.vid }}" type="video/mp4">
-            </video>
-            {% if post.data.title %}
-            <div class="">{{ post.data.title }}</div>
-            {% endif %}
-        </div>
-        {% endif %}
-    </div>
-    <div class="space-s"></div>
-    {% endfor %}
-    <div class="grid">Grid</div>
+	<div class="headline limiter title-left">
+		<div class="outline-red white ">
+			Display,
+		</div>
+	</div>
+	{% for post in collections.post %}
+	<div class="sticky-wrapper news">
+		{% if post.data.img %}
+		<div class="left-align">
+			<img class="img news" id="{{ post.fileSlug }}"  src="{{ post.data.img }}">
+			{% if post.data.txt %}
+			<div class="txt">{{ post.data.txt }}</div>
+			{% endif %}
+		</div>
+		{% else %}
+		<div class="left-align">
+			<video class="vid news" id="{{ post.fileSlug }}" autoplay muted loop playsinline src="{{ post.data.vid }}" type="video/mp4">
+			</video>
+			{% if post.data.title %}
+			<div class="">{{ post.data.title }}</div>
+			{% endif %}
+		</div>
+		{% endif %}
+	</div>
+	<div class="space-s"></div>
+	{% endfor %}
+	<div class="grid">Grid</div>
 </div>
 
 
 
 <div class="wrapper pantograph wide">    
-    <div class="headline limiter"><div class="outline-blue white ">Pantograph,</div></div>
-    <div class="grey-out"></div>
-    <div class="issue-grid">
-        {% for pantograph in collections.pantograph %}
-        <div class="sticky-wrapper relative issue" file-handler="{{ pantograph.data.file }}">
-            {% if pantograph.data.img %}
-            <div class="subgrid">
-                <div class="blue-bg">
-                    <canvas id="the-canvas"></canvas>
-                </div>
-                <img class="img img-widther" id="{{ pantograph.fileSlug }}" src="{{ pantograph.data.img }}" loading="lazy">
-                {% if pantograph.data.title %}
-                <span id="post-{{ pantograph.fileSlug }}" onclick="transitionToPage('pantograph/{{ pantograph.fileSlug }}', this.id)">
-                    <div class="title-subgrid">
-                        <div class="description-title outline-blue white">{{ pantograph.data.title }}</div>
-                    </div>
-                    <div class="description">{{ pantograph.data.info }}</div>
-                    <div class="description hide" id="long-info">{{ pantograph.data.info-long }}</div>
-                    <div class="price-subgrid">
-                        <div class="description">{{ pantograph.data.print }}</div>
-                        <div class="description">{{ pantograph.data.format }}</div>
-                        <div class="description">{{ pantograph.data.price }}</div>
-                    </div>
-                </span>
-                <a href="mailto:Pierre.Pane-Farre@haw-hamburg.de?subject=A new order from the website&body=Hello Pantograph,%0D%0A I would like to order 1 copy of »{{ pantograph.data.title }}« to the following adress _______.">
-                    <div class="description order-button">Order</div>
-                </a>
-                <div class="space-bottom hide"></div>
-                {% endif %}
+	<div class="headline limiter"><div class="outline-blue white ">Pantograph,</div></div>
+	<div class="grey-out g-o-animate-out"></div>
+	<div class="issue-grid">
+		{% for pantograph in collections.pantograph %}
+		<div class="sticky-wrapper relative issue" file-handler="{{ pantograph.data.file }}">
+			{% if pantograph.data.img %}
+			<div class="subgrid">
+				<div class="blue-bg">
+					<canvas id="the-canvas"></canvas>
+				</div>
+				<img class="img img-widther" id="{{ pantograph.fileSlug }}" src="{{ pantograph.data.img }}" loading="lazy">
+				{% if pantograph.data.title %}
+				<span id="post-{{ pantograph.fileSlug }}" onclick="transitionToPage('pantograph/{{ pantograph.fileSlug }}', this.id)">
+					<div class="title-subgrid">
+						<div class="description-title outline-blue white">{{ pantograph.data.title }}</div>
+					</div>
+					<div class="close-btn hide">
+						<div aria-label="Close">
+							X
+						</div>
+					</div>
+					<div class="description">{{ pantograph.data.info }}</div>
+					<div class="description hide" id="long-info">{{ pantograph.data.info-long }}</div>
+					<div class="price-subgrid">
+						<div class="description">{{ pantograph.data.print }}</div>
+						<div class="description">{{ pantograph.data.format }}</div>
+						<div class="description">{{ pantograph.data.price }}</div>
+					</div>
+				</span>
+				<a href="mailto:Pierre.Pane-Farre@haw-hamburg.de?subject=A new order from the website&body=Hello Pantograph,%0D%0A I would like to order 1 copy of »{{ pantograph.data.title }}« to the following adress _______.">
+					<div class="description order-button">Order</div>
+				</a>
+				<div class="space-bottom hide"></div>
+				{% endif %}
 
-            </div>
-            {% else %}
-            <div class="">
-                <video class="vid img-widther" autoplay muted loop playsinline>
-                    <source src="{{ pantograph.data.vid }}" type="video/mp4">
-                </video>
-                {% if pantograph.data.title %}
-                <div class="">{{ pantograph.data.title }}</div>
-                {% endif %}
-            </div>
-            {% endif %}
-        </div>
-        {% endfor %}
-    </div>
-    <div class="space-bottom"></div>
+			</div>
+			{% else %}
+			<div class="">
+				<video class="vid img-widther" autoplay muted loop playsinline>
+					<source src="{{ pantograph.data.vid }}" type="video/mp4">
+				</video>
+				{% if pantograph.data.title %}
+				<div class="">{{ pantograph.data.title }}</div>
+				{% endif %}
+			</div>
+			{% endif %}
+		</div>
+		{% endfor %}
+	</div>
+	<div class="space-bottom"></div>
 </div>
 
 
@@ -99,14 +104,14 @@ layout: title-page.html
 <div class="info">Info</div>
 <!--<div class="info-rounds hide"></div>-->
 <div class="info-content hide">
-    “display---pantograph.xyz” is a platform that is two-fold: On the one side it’s “Display” allows a glimpse into the ongoing timeline of the type design classes at the Hochschule für Angewandte Wissenschaften in Hamburg. Simultaneously, it is the digital home of “Pantograph”, a non-profit micro-label, closely aligned with these type design classes, which aims to publish projects stemming from typographic research and conceptual approaches within type design. 
-    <br><br>
-    The variable typeface in use is “Dialog” (WIP) by Finn Reduhn and stems from his close-reading and reacting towards the texts “Digital type decade” by Emily King and “The digital wave” by Robin Kinross. This platform and “Pantograph” are projects initiated by Prof. Pierre Pane-Farre. The website was developed together with Simon Thiefes. Please don’t hesitate to reach out <a href="mailto:pierre.pane-farre@haw-hamburg.de" style="color: white; text-decoration: underline;">via email</a>, if you have any questions or would like to connect! 
+	“display---pantograph.xyz” is a platform that is two-fold: On the one side it’s “Display” allows a glimpse into the ongoing timeline of the type design classes at the Hochschule für Angewandte Wissenschaften in Hamburg. Simultaneously, it is the digital home of “Pantograph”, a non-profit micro-label, closely aligned with these type design classes, which aims to publish projects stemming from typographic research and conceptual approaches within type design. 
+	<br><br>
+	The variable typeface in use is “Dialog” (WIP) by Finn Reduhn and stems from his close-reading and reacting towards the texts “Digital type decade” by Emily King and “The digital wave” by Robin Kinross. This platform and “Pantograph” are projects initiated by Prof. Pierre Pane-Farre. The website was developed together with Simon Thiefes. Please don’t hesitate to reach out <a href="mailto:pierre.pane-farre@haw-hamburg.de" style="color: white; text-decoration: underline;">via email</a>, if you have any questions or would like to connect! 
 </div>
 
 <label class="switch">
-    <input type="checkbox" id="switch" checked>
-    <span class="slider round"></span>
-    <div class="label left">Display</div>
-    <div class="label right">Pantograph</div>
+	<input type="checkbox" id="switch" checked>
+	<span class="slider round"></span>
+	<div class="label left">Display</div>
+	<div class="label right">Pantograph</div>
 </label>
