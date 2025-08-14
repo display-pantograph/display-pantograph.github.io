@@ -734,6 +734,7 @@ h1 {
 	}
 	.issue-wide {
 		width: calc(100vw - 8px);
+		margin: 48px 0px;
 	}
 	.issue-grid {
 		padding: 48px 4px;
@@ -751,8 +752,8 @@ h1 {
 		left: 4px;
 	}
 	.close-btn {
-		top: 4px;
-		right: 6px;
+		top: 6px;
+		right: 4px;
 	}
 	.switch {
 		left: 4px;
