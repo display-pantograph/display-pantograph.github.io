@@ -742,18 +742,22 @@ h1 {
 	.issue-wide .blue-bg {
 		height: 24rem;
 	}
-	.info, .grid {
-		bottom: 80px;
-	}
-	.info {
-		left: calc(100vw - 52px);
-	}
 	.grid {
 		left: 4px;
 	}
 	.close-btn {
 		top: 6px;
 		right: 4px;
+	}
+	.info {
+		left: calc(100vw - 52px);
+	}
+
+}
+
+@media only screen and (max-width: 352px) {
+	.info, .grid {
+		bottom: 80px;
 	}
 	.switch {
 		left: 4px;
@@ -771,4 +775,5 @@ h1 {
 		left: 4px;
 		right: auto;
 	}
+
 }
