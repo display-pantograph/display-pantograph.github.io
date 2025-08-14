@@ -326,9 +326,6 @@ a {
 	height: 44rem;
 }
 
-.issue-wide canvas{
-	height: 100% !important;
-}
 
 
 .issue-wide .description-title {
@@ -348,6 +345,8 @@ canvas {
 
 .issue-wide canvas {
 	margin: auto auto 12px auto;
+	height: 100% !important;
+	max-height: 100% !important;
 }
 
 .canvas-animate {
