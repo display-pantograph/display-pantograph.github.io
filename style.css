@@ -344,9 +344,10 @@ canvas {
 }
 
 .issue-wide canvas {
-	margin: auto auto 12px auto;
+	margin: auto auto 12px 12px;
 	height: 100% !important;
-	max-height: 100% !important;
+	max-height: calc(100% - 24px) !important;
+	max-width: calc(100% - 24px);
 }
 
 .canvas-animate {
@@ -644,7 +645,7 @@ h1 {
 	}
 	.issue-wide {
 		width: calc(100vw - 48px);
-		margin: 48px 0px;
+		margin: 48px 8px;
 	}
 	.grey-out {
 		width: 100vw;
@@ -653,7 +654,7 @@ h1 {
 		left: calc(100vw - 72px);
 	}
 	.info-content {
-		width: clamp(200px, 80%, 400px);
+		width: calc(100vw - 72px);
 		position: absolute;
 		bottom: 72px;
 		left: auto;
@@ -702,7 +703,7 @@ h1 {
 	}
 	.close-btn {
 		top: 4px;
-		right: 16px;
+		right: 24px;
 	}
 	.info {
 		left: calc(100vw - 72px);
