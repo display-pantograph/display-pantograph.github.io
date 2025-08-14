@@ -716,9 +716,9 @@ h1 {
 	}
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 400px) {
 	.main-grid {
-		padding: 48px 12px;
+		padding: 48px 4px;
 	}
 	.title-left{
 		left: 0;
@@ -727,16 +727,16 @@ h1 {
 		padding: 0;
 	}
 	.headline {
-		margin-left: 12px;
+		margin-left: 4px;
 	}
 	.issue {
 		width: auto;
 	}
 	.issue-wide {
-		width: calc(100vw - 24px);
+		width: calc(100vw - 8px);
 	}
 	.issue-grid {
-		padding: 48px 12px;
+		padding: 48px 4px;
 	}
 	.issue-wide .blue-bg {
 		height: 24rem;
@@ -745,25 +745,29 @@ h1 {
 		bottom: 80px;
 	}
 	.info {
-		left: calc(100vw - 60px);
+		left: calc(100vw - 52px);
 	}
 	.grid {
-		left: 12px;
+		left: 4px;
+	}
+	.close-btn {
+		top: 4px;
+		right: 6px;
 	}
 	.switch {
-		left: 12px;
-		width: calc(100vw - 24px);
+		left: 4px;
+		width: calc(100vw - 8px);
 		z-index: 999;
 	}
 	input:checked + .slider:before {
-		-webkit-transform: translateX(calc(100vw - 159px));
-		-ms-transform: translateX(calc(100vw - 159px));
-		transform: translateX(calc(100vw - 159px));
+		-webkit-transform: translateX(calc(100vw - 144px));
+		-ms-transform: translateX(calc(100vw - 144px));
+		transform: translateX(calc(100vw - 144px));
 	}
 	.info-content {
 		bottom: 128px;
-		width: calc(100vw - 48px);
-		left: 12px;
+		width: calc(100vw - 32px);
+		left: 4px;
 		right: auto;
 	}
 }
