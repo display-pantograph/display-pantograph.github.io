@@ -752,7 +752,11 @@ h1 {
 	.info {
 		left: calc(100vw - 52px);
 	}
-
+	.info-content {
+		width: calc(100vw - 32px);
+		left: 4px;
+		right: auto;
+	}
 }
 
 @media only screen and (max-width: 352px) {
@@ -771,9 +775,6 @@ h1 {
 	}
 	.info-content {
 		bottom: 128px;
-		width: calc(100vw - 32px);
-		left: 4px;
-		right: auto;
 	}
 
 }
