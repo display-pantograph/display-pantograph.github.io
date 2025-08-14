@@ -50,7 +50,6 @@ a {
 	position: fixed;
 	top: 0;
 	justify-items: start;
-	transition: 5s;
 	z-index: 999;
 	display: inline;
 }
@@ -148,7 +147,7 @@ a {
 
 
 .info {
-	position: absolute;
+	position: fixed;
 	bottom: 24px;
 	left: calc(50vw + 24px);
 	background-color: #2a45f5;
@@ -207,7 +206,7 @@ a {
 }
 
 .grid {
-	position: absolute;
+	position: fixed;
 	left: 24px;
 	bottom: 24px;
 	background-color: red;
@@ -296,7 +295,8 @@ a {
 	justify-items: center;
 	align-items: start;
 	grid-gap: 24px;
-	padding-top: 48px;
+	padding: 48px 24px;
+	width: calc(50vw - 48px);
 }
 
 .issue-grid {
@@ -343,7 +343,7 @@ canvas {
 	max-width: 100%;
 	height: auto;
 	max-height: calc(100% - 24px);
-	margin: auto auto 12px 12px;
+	margin: 12px auto 12px 12px;
 }
 
 .issue-wide canvas {
@@ -385,11 +385,10 @@ canvas {
 .close-btn {
 	position: fixed;
 	top: 48px;
-	right: 64px;
+	right: 24px;
 	cursor: pointer;
-	background-color: blue;
+	background-color: #2a45f5;
 	color: white;
-	padding: 4px;
 	border-radius: 100%;
 	width: 48px;
 	height: 48px;
@@ -408,7 +407,7 @@ canvas {
 }
 
 .switch {
-	position: absolute;
+	position: fixed;
 	bottom: 24px;
 	left: calc(50vw - 128px);
 	display: inline-block;
@@ -590,9 +589,6 @@ h1 {
 		width: calc(50vw - 144px);
 		margin: 48px 48px;
 	}
-	.close-btn {
-		right: 16px;
-	}
 	.issue .img {
 		height: calc(16rem - 16px);
 	}
@@ -611,8 +607,8 @@ h1 {
 		margin: 48px 24px;
 	}
 	.close-btn {
-		width: 24px;
-		height: 24px;
+		width: 36px;
+		height: 36px;
 	}
 }
 @media only screen and (max-width: 960px) {
@@ -624,21 +620,21 @@ h1 {
 @media only screen and (max-width: 720px) {
 	.news {
 		display: none;
-		width: 100%;
+		width: auto;
 	}
 
 	.pantograph {
 		position: relative;
 		top:0;
 		padding: 0 24px;
-		width: calc(100vw - 48px);
+		width: auto;
 	}
 	.close-btn {
-		top: 16px;
-		right: 48px;
+		top: 6px;
+		right: 24px;
 	}
 	.main-grid{
-		grid-template-columns: repeat(4, calc(25vw - 19px));
+		grid-template-columns: repeat(4, 1fr);
 	}
 	.switch {
 		display: block !important;
@@ -659,7 +655,7 @@ h1 {
 		position: absolute;
 		bottom: 72px;
 		left: auto;
-		right: 12px;
+		right: 16px;
 	}
 	.info-rounds{
 		right: 24px;
@@ -679,17 +675,20 @@ h1 {
 
 @media only screen and (max-width: 480px) {
 	.main-grid{
-		grid-template-columns: repeat(2, calc(50vw - 12px));
+		grid-template-columns: repeat(2, 1fr);
 	}
 	.pantograph{
 		padding: 0;
 		width: 100%;
 	}
+	.headline {
+		margin-left: 16px;
+	}
 	.issue {
 		width: calc(100% - 16px);
 	}
 	.issue-wide {
-		width: calc(100% - 16px);
+		width: calc(100vw - 32px);
 		margin: 48px 0px;
 	}
 	.issue-grid {
@@ -697,14 +696,15 @@ h1 {
 		grid-template-columns: 1fr;
 		padding: 48px 8px;
 	}
+	.close-btn {
+		top: 4px;
+		right: 16px;
+	}
 	.info {
-		left: calc(100vw - 54px);
+		left: calc(100vw - 64px);
 	}
 	.grid {
-		left: 8px;
-	}
-	.outline-blue {
-		margin-left: 24px;
+		left: 16px;
 	}
 }
 
@@ -717,10 +717,6 @@ h1 {
 	}
 	.issue {
 		width: calc(100% - 16px);
-	}
-	.issue-wide {
-		width: calc(100% - 16px);
-		margin: 48px 0px;
 	}
 	.issue-wide .blue-bg {
 		height: 24rem;
@@ -740,8 +736,8 @@ h1 {
 	}
 	.info-content {
 		bottom: 128px;
-		width: calc(100vw - 40px);
-		left: 8px;
+		width: calc(100vw - 56px);
+		left: 16px;
 		right: auto;
 	}
 }
