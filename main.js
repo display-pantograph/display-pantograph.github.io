@@ -63,10 +63,12 @@ $(window).on("load", function() {
 
 
 	$('.issue').each(async function() {
-		await renderPDF($(this).attr("file-handler"), $(this).find('.img').outerWidth(), $(this).find('.img').outerHeight(), $(this).find('#the-canvas'), 1);
 		$(this).find('.img').css("display", "none");
+		await renderPDF($(this).attr("file-handler"), $(this).find('.img').outerWidth(), $(this).find('.img').outerHeight(), $(this).find('#the-canvas'), 0);
 	});
 
+
+	scaler();
 
 	$(".blue-bg").on("click", async function() {
 		var canvas = $(this).find('#the-canvas');
@@ -137,8 +139,6 @@ $(window).on("load", function() {
 		$(".pantograph").closest(".wrapper").removeClass("wide");
 	}
 
-
-	scaler();
 });
 
 
@@ -316,7 +316,7 @@ window.transitionToPage = function(href, id) {
 
 
 
-async function renderPDF(file, width, height, canvas, pageNumber){
+async function renderPDF(file, width, height, canvas, pageNumber, scaler){
 
 	// Loaded via <script> tag, create shortcut to access PDF.js exports.
 	var { pdfjsLib } = globalThis;
@@ -324,60 +324,71 @@ async function renderPDF(file, width, height, canvas, pageNumber){
 	// The workerSrc property shall be specified.
 	pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
 	pageRendering = true;
-
+	if (pageNumber == 0) {
+		var flag = true;
+		pageNumber = 1;
+	} else {
+		varflag = false;
+	}
 	// Asynchronous download of PDF
 	var loadingTask = pdfjsLib.getDocument(file);
 	loadingTask.promise.then(function(pdf) {
 		pdf.getPage(pageNumber).then(function(page) {
 			var renderTask = null;
-
+			var outputScale = window.devicePixelRatio || 1;
 			if ( renderTask !== null ) {
 				renderTask.cancel();
 				return;
 			}
 
-			var viewport = page.getViewport({ scale: 1 });
-			if (scaler === undefined) {
-				var scaler = width / viewport.width;
+			var viewport = page.getViewport({ scale: outputScale });
+			if (scaler == null){
+				canvas.attr("scaler", 1 / viewport.width);
+				scaler = canvas.attr("scaler");
 			}
-			var scaledViewport = page.getViewport({ scale: scaler });
-			// var outputScale = window.devicePixelRatio || 1;
+
+			if (!minScale == 1 || scaler <= minScale) {
+				minScale = scaler;
+			}
+
+			var scaledPage =  (canvas.outerWidth() * outputScale) * (1 / viewport.width);
+
 			// Prepare canvas using PDF page dimension
 			var context = canvas.get(0).getContext('2d');
 
 			canvas.attr("no-pages", pdf.numPages);
-			if (canvas.attr("scaler") === undefined) {
-				canvas.attr("scaler", scaler);
-			}
+
+			var scaledViewport = page.getViewport({ scale: scaledPage });
 			canvas.attr("curr-page", pageNumber);
-			console.log(canvas.attr("width"));
 			if(canvas.attr("width") === undefined || canvas.attr("height") === undefined) {
-				canvas.attr("width", resolution * width);
-				canvas.attr("height", resolution * height);
-				canvas.get(0).width = resolution * width;
-				canvas.get(0).height = resolution * height;
+				canvas.attr("width", outputScale * width);
+				canvas.attr("height", outputScale * height);
+				canvas.width = canvas.outerWidth() * outputScale;
+				canvas.height = canvas.outerWidth() * outputScale;
+
 			} else {
-				canvas.attr("width", width);
-				canvas.attr("height", height);
-			}
-			if (scaler <= minScale) {
-				minScale = scaler;
-				console.log(minScale);
+				canvas.attr("width", canvas.outerWidth() * outputScale);
+				canvas.attr("height", canvas.outerHeight()* outputScale);
+				canvas.width = canvas.outerWidth() * outputScale;
+				canvas.height = canvas.outerWidth() * outputScale;
 			}
 
-			// Render PDF page into canvas context
-			if(canvas.attr("curr-page") == 1) {
+			const transform = [ ((width * outputScale) * (1 / viewport.width)), 0 , 0, ((height * outputScale) * (1 / viewport.height)), 0, 0];
+
+			if(flag) {
 				var renderContext = {
 					canvasContext: context,
-					viewport: scaledViewport,
-					transform: [resolution, 0, 0, resolution, 0, 0]
+					viewport: viewport,
+					transform: transform
 				};
 			} else {
 				var renderContext = {
 					canvasContext: context,
-					viewport: scaledViewport
+					viewport: viewport,
+					transform: [scaledPage, 0, 0, scaledPage,  0, 0]
 				};
 			}
+
 			var renderTask = page.render(renderContext);
 			renderTask.promise.then(function () {
 				pageRendering = false;
